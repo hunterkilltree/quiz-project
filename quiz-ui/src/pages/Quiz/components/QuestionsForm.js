@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-const QuestionsForm = () => {
+const QuestionsForm = ({ onHandleSubmit }) => {
   // const [questions, setQuestions] = useState([]);
   // const [answers, setAnswers] = useState({});
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
@@ -38,12 +39,14 @@ const QuestionsForm = () => {
   //   }));
   // };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  //   // Submit answers to the server or perform any necessary actions
-  //   console.log(answers);
-  // };
+    // Submit answers to the server or perform any necessary actions
+    if (onHandleSubmit) {
+      onHandleSubmit(timeRemaining);
+    }
+  };
 
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -55,7 +58,9 @@ const QuestionsForm = () => {
     <div>
       <h2>Question Form</h2>
       <p>Time Remaining: {formatTime(timeRemaining)}</p>
-      <button type="submit">Submit</button>
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
       {/* <form onSubmit={handleSubmit}>
         {questions.map((question) => (
           <div key={question.id}>
@@ -71,6 +76,10 @@ const QuestionsForm = () => {
       </form> */}
     </div>
   );
+};
+
+QuestionsForm.propTypes = {
+  onHandleSubmit: PropTypes.func.isRequired
 };
 
 export default QuestionsForm;
