@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.49fa1dd7.css","mappings":"AAAA,QACE,qBAAuB,CAEvB,UAAY,CADZ,cAAe,CAEf,WACF","sources":["components/NavBar/NavBar.css"],"sourcesContent":[".NavBar {\r\n  background-color: black;\r\n  font-size: 20px;\r\n  color: white;\r\n  height: 70px;\r\n}"],"names":[],"sourceRoot":""}
