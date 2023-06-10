@@ -6,7 +6,12 @@ import { questions, answers } from "../database/data.js";
 export async function getQuestions(req, res) {
   try {
     const q = await Questions.find();
-    res.json(q);
+    if (q && q.length > 0) {
+      const arrayQuestions = q[0]?.questions;
+      res.json(arrayQuestions);
+    } else {
+      res.json("No questions");
+    }
   } catch (error) {
     res.json({ error });
   }
