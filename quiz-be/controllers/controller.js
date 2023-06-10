@@ -13,28 +13,73 @@ export async function getQuestions(req, res) {
 }
 
 export async function insertQuestions(req, res) {
-  Questions.insertMany({ questions: questions, answers })
-    .then(function () {
-      console.log("Successfully saved defult items to DB");
+  try {
+    await Questions.insertMany({ questions: questions, answers }).then(function () {
+      res.json({ msg: "Questions inserted"});
     })
-    .catch(function (err) {
-      console.log(err);
-    });
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 export async function deleteQuestions(req, res) {
-  res.json("questions api delete request");
+  try {
+    await Questions.deleteMany();
+    res.json({ msg: "Questions deleted"});
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 /** RESULT */
 export async function getResult(req, res) {
-  res.json("result api get request");
+  try {
+    const r = await Results.find();
+    res.json(r);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 export async function storeResult(req, res) {
-  res.json("store api post request");
+  try {
+    const {
+      username,
+      university,
+      result,
+      attempts,
+      points,
+      achieved,
+      time,
+      createdAt,
+      updatedAt
+    } = req.body;
+
+    if (!username && !university && !result) throw new Error('Data not valid ...');
+
+    Results.create({
+      username,
+      university,
+      result,
+      attempts,
+      points,
+      achieved,
+      time,
+      createdAt,
+      updatedAt
+    }).then(function () {
+      res.json({ msg: "Result inserted"});
+    })
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 export async function deleteResult(req, res) {
-  res.json("result api delete request");
+  try {
+    await Results.deleteMany();
+    res.json({ msg: "Results deleted"});
+  } catch (error) {
+    res.json({ error });
+  }
 }
