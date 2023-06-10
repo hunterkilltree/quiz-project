@@ -4,6 +4,7 @@ import { Quiz } from './pages/Quiz';
 import { Result } from './pages/Result';
 import { NavBar } from './components/NavBar';
 import { Route, Routes } from 'react-router-dom';
+import { Leaderboard } from './pages/Leaderboard';
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
         <Route exact path="/Home" element={<Home />} />
         <Route path="/" element={<Home />}></Route>
         <Route exact path="/Quiz" element={<Quiz />} />
+        <Route exact path="/Leaderboard" element={<Leaderboard />} />
         <Route exact path="/Result" element={<Result />} />
       </Routes>
     </div>

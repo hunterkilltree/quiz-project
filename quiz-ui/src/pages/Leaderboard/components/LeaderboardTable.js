@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Leaderboard = ({ data }) => {
+const LeaderboardTable = ({ data }) => {
   if (!data || data.length === 0) {
     return <p>No data available</p>;
   }
@@ -30,7 +30,7 @@ const Leaderboard = ({ data }) => {
   );
 };
 
-Leaderboard.propTypes = {
+LeaderboardTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -41,4 +41,4 @@ Leaderboard.propTypes = {
   ),
 };
 
-export default Leaderboard;
+export default LeaderboardTable;
