@@ -28,7 +28,7 @@ const Quiz = () => {
     const data = {
       name: name,
       university: university,
-      timeRemaining: timeRemaining
+      time: timeRemaining
     };
     // send this data to server
     console.log(data);

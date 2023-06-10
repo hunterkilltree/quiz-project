@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { getServerData } from '../../../helper/helper';
+import Question from './Question';
 
 const QuestionsForm = ({ onHandleSubmit }) => {
-  // const [questions, setQuestions] = useState([]);
-  // const [answers, setAnswers] = useState({});
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
 
   useEffect(() => {
     // Fetch questions from an API or any data source
-    // const fetchQuestions = async () => {
-    //   try {
-    //     const response = await fetch('https://example.com/questions');
-    //     const data = await response.json();
-    //     setQuestions(data.questions);
-    //   } catch (error) {
-    //     console.error('Error fetching questions:', error);
-    //   }
-    // };
-    // fetchQuestions();
+    const fetchQuestions = async () => {
+      try {
+        const q = await getServerData(
+          // eslint-disable-next-line no-undef
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`,
+          (data) => data
+        );
+        setQuestions(q);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    };
+    fetchQuestions();
   }, []);
 
   useEffect(() => {
@@ -32,12 +37,13 @@ const QuestionsForm = ({ onHandleSubmit }) => {
     };
   }, []);
 
-  // const handleAnswerChange = (questionId, answer) => {
-  //   setAnswers((prevAnswers) => ({
-  //     ...prevAnswers,
-  //     [questionId]: answer
-  //   }));
-  // };
+  const handleNextQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+  };
+
+  const handlePreviousQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,22 +64,24 @@ const QuestionsForm = ({ onHandleSubmit }) => {
     <div>
       <h2>Question Form</h2>
       <p>Time Remaining: {formatTime(timeRemaining)}</p>
-      <button type="submit" onClick={handleSubmit}>
-        Submit
+
+      <form onSubmit={handleSubmit}>
+        {questions.length > 0 && (
+          <>
+            <Question question={questions[currentQuestionIndex]} />
+          </>
+        )}
+      </form>
+      <button type="button" onClick={handlePreviousQuestion} disabled={currentQuestionIndex === 0}>
+        Previous
       </button>
-      {/* <form onSubmit={handleSubmit}>
-        {questions.map((question) => (
-          <div key={question.id}>
-            <p>{question.text}</p>
-            <input
-              type="text"
-              value={answers[question.id] || ''}
-              onChange={(e) => handleAnswerChange(question.id, e.target.value)}
-            />
-          </div>
-        ))}
-        <button type="submit">Submit</button>
-      </form> */}
+      <button
+        type="button"
+        onClick={handleNextQuestion}
+        disabled={currentQuestionIndex === questions.length - 1}>
+        Next
+      </button>
+      {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
     </div>
   );
 };
