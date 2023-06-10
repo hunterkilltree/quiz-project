@@ -17,6 +17,9 @@ const NavBar = () => {
         <li>
           <Link to="/Result">Result</Link>
         </li>
+        <li>
+          <Link to="/Leaderboard">Leaderboard</Link>
+        </li>
       </ul>
       <hr />
     </div>
