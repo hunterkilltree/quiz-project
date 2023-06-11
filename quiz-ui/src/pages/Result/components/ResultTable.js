@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import TableBody from '@mui/material/TableBody';
-import TableCell, {tableCellClasses} from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
 const ResultTable = ({ name, school, time, score }) => {
-const [rank, setRank] = useState(null);
+  const [rank, setRank] = useState(null);
   useEffect(() => {
     // Simulating an API call to fetch the user's rank from the leaderboard
     // Replace this with your actual API call to fetch the rank
@@ -31,9 +31,9 @@ const [rank, setRank] = useState(null);
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14
-    },
+    }
   }));
-  
+
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
@@ -48,8 +48,10 @@ const [rank, setRank] = useState(null);
         <StyledTableCell align="right">{school}</StyledTableCell>
         <StyledTableCell align="right">{time}</StyledTableCell>
         <StyledTableCell align="right">{score}</StyledTableCell>
-        <StyledTableCell align="right">{(rank != null ? rank : <p>Loading rank...</p>)}</StyledTableCell>
-      </StyledTableRow >
+        <StyledTableCell align="right">
+          {rank != null ? rank : <p>Loading rank...</p>}
+        </StyledTableCell>
+      </StyledTableRow>
     </TableBody>
   );
 };

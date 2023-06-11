@@ -33,8 +33,14 @@ const Result = () => {
               <TableCell align="right">Rank&nbsp;in&nbsp;Leaderboard</TableCell>
             </TableRow>
           </TableHead>
-          {rows.map((row) => (
-            <ResultTable key={row} name={row.name} school={row.school} time={row.time} score={row.score} />
+          {rows.map((row, index) => (
+            <ResultTable
+              key={index}
+              name={row.name}
+              school={row.school}
+              time={row.time}
+              score={row.score}
+            />
           ))}
         </Table>
       </TableContainer>
