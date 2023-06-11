@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ResultTable from './components/ResultTable';
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
@@ -6,41 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { getServerData } from '../../helper/helper';
+import { useLocation } from 'react-router-dom';
 
 const Result = () => {
-  const [results, setResults] = useState([]);
-
-  useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        // Make a fetch request to the server to get the results
-        const data = await getServerData(
-          // eslint-disable-next-line no-undef
-          `${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`,
-          (data) => data
-        );
-
-        if (data.length < 1) return;
-
-        const sortedResults = data.sort((a, b) => {
-          if (b.points !== a.points) {
-            return b.points - a.points; // Sort by points in descending order
-          }
-          if (a.time !== b.time) {
-            return a.time.localeCompare(b.time); // Sort by time in ascending order
-          }
-          return a.username.localeCompare(b.username); // Sort by username in ascending order
-        });
-        setResults(sortedResults);
-      } catch (error) {
-        console.error('Error fetching results:', error);
-      }
-    };
-
-    fetchResults();
-  }, []);
-
+  const location = useLocation();
+  const result = location.state;
   return (
     <div>
       <h1>Overall Results</h1>
@@ -55,16 +25,14 @@ const Result = () => {
               <TableCell align="right">Rank&nbsp;in&nbsp;Leaderboard</TableCell>
             </TableRow>
           </TableHead>
-          {results.map((result, index) => (
-            <ResultTable
-              key={index}
-              name={result.username}
-              school={result.university}
-              time={result.time}
-              score={result.points}
-              rank={index + 1} // Rank is the index + 1
-            />
-          ))}
+
+          <ResultTable
+            name={result?.data?.username}
+            school={result?.data?.university}
+            time={result?.data?.time}
+            score={result?.data?.points}
+            rank={result?.rank} // Rank is the index + 1
+          />
         </Table>
       </TableContainer>
     </div>

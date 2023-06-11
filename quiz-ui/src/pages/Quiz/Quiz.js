@@ -7,7 +7,6 @@ const Quiz = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [name, setName] = useState('');
   const [university, setUniversity] = useState('');
-  const [userResult, setUserResult] = useState(null);
 
   const navigate = useNavigate();
 
@@ -45,15 +44,13 @@ const Quiz = () => {
           (data) => data
         );
         console.log(userResult);
-        setUserResult(userResult);
+        // Redirect to result page
+        navigate('/Result', { state: userResult });
       } catch (error) {
         console.error('Error post result:', error);
       }
     };
     postResult();
-
-    // Redirect to result page
-    navigate('/Result', { state: { userResult: userResult } });
   };
 
   return (

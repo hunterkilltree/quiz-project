@@ -59,7 +59,6 @@ const QuestionsForm = ({ onHandleSubmit }) => {
 
     // Submit answers to the server or perform any necessary actions
     if (onHandleSubmit) {
-      console.log(answers);
       onHandleSubmit(timeRemaining, answers);
     }
   };

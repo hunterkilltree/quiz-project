@@ -1,8 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { getServerData } from '../../../helper/helper';
+import { formatTime } from '../../../components/Util';
 
-const LeaderboardTable = ({ data }) => {
-  if (!data || data.length === 0) {
+const LeaderboardTable = () => {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        // Make a fetch request to the server to get the results
+        const data = await getServerData(
+          // eslint-disable-next-line no-undef
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`,
+          (data) => data
+        );
+
+        if (data.length < 1) return;
+
+        const sortedResults = data.sort((a, b) => {
+          if (b.points !== a.points) {
+            return b.points - a.points; // Sort by points in descending order
+          }
+          if (a.time !== b.time) {
+            return a.time.localeCompare(b.time); // Sort by time in ascending order
+          }
+          return a.username.localeCompare(b.username); // Sort by username in ascending order
+        });
+        setResults(sortedResults);
+      } catch (error) {
+        console.error('Error fetching results:', error);
+      }
+    };
+
+    fetchResults();
+  }, []);
+
+  if (!results || results.length === 0) {
     return <p>No data available</p>;
   }
 
@@ -14,31 +47,22 @@ const LeaderboardTable = ({ data }) => {
           <th>Name</th>
           <th>School</th>
           <th>Score</th>
+          <th>Time</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((player, index) => (
-          <tr key={player.id}>
+        {results.map((result, index) => (
+          <tr key={index}>
             <td>{index + 1}</td>
-            <td>{player.name}</td>
-            <td>{player.school}</td>
-            <td>{player.score}</td>
+            <td>{result.name}</td>
+            <td>{result.university}</td>
+            <td>{result.points}</td>
+            <td>{formatTime(result.time)}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
-};
-
-LeaderboardTable.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      school: PropTypes.string.isRequired,
-      score: PropTypes.number.isRequired,
-    })
-  ),
 };
 
 export default LeaderboardTable;
