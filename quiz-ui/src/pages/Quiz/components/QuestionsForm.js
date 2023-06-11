@@ -7,6 +7,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
+  const [answers, setAnswers] = useState({}); // Object to store user answers
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -45,12 +46,20 @@ const QuestionsForm = ({ onHandleSubmit }) => {
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
+  const handleAnswerChange = (questionId, answer) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: answer
+    }));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Submit answers to the server or perform any necessary actions
     if (onHandleSubmit) {
-      onHandleSubmit(timeRemaining);
+      console.log(answers);
+      onHandleSubmit(timeRemaining, answers);
     }
   };
 
@@ -68,20 +77,29 @@ const QuestionsForm = ({ onHandleSubmit }) => {
       <form onSubmit={handleSubmit}>
         {questions.length > 0 && (
           <>
-            <Question question={questions[currentQuestionIndex]} />
+            <Question
+              question={questions[currentQuestionIndex]}
+              onSelectedOption={(answer) =>
+                handleAnswerChange(questions[currentQuestionIndex].id, answer)
+              }
+            />
           </>
         )}
+
+        <button
+          type="button"
+          onClick={handlePreviousQuestion}
+          disabled={currentQuestionIndex === 0}>
+          Previous
+        </button>
+        <button
+          type="button"
+          onClick={handleNextQuestion}
+          disabled={currentQuestionIndex === questions.length - 1}>
+          Next
+        </button>
+        {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
       </form>
-      <button type="button" onClick={handlePreviousQuestion} disabled={currentQuestionIndex === 0}>
-        Previous
-      </button>
-      <button
-        type="button"
-        onClick={handleNextQuestion}
-        disabled={currentQuestionIndex === questions.length - 1}>
-        Next
-      </button>
-      {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
     </div>
   );
 };

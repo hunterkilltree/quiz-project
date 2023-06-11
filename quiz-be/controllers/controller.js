@@ -46,33 +46,41 @@ export async function getResult(req, res) {
   }
 }
 
+async function calculatePoint(answers, time) {
+  let trueCount = 0;
+  const q = await Questions.find();
+  const arrayResult= q[0]?.answers;
+
+  Object.keys(answers).forEach((questionId, index) => {
+    const userAnswer = parseInt(answers[questionId], 10);
+    const correctAnswer = arrayResult[index];
+
+    if (userAnswer === correctAnswer) {
+      trueCount++;
+    }
+  })
+  return trueCount * time;
+}
+
 export async function storeResult(req, res) {
   try {
-    const {
-      username,
-      university,
-      result,
-      attempts,
-      points,
-      achieved,
-      time,
-      createdAt,
-      updatedAt
-    } = req.body;
+    if (!req?.body?.username && !req?.body?.university && !req?.body?.answers) throw new Error('Data not valid ...');
 
-    if (!username && !university && !result) throw new Error('Data not valid ...');
+    const points = await calculatePoint(req.body.answers, req.body.time);
 
-    Results.create({
-      username,
-      university,
-      result,
-      attempts,
-      points,
-      achieved,
-      time,
-      createdAt,
-      updatedAt
-    }).then(function () {
+    const data = {
+      username: req?.body?.username,
+      university: req?.body?.university,
+      result: answers,
+      attempts: 1,
+      points: points,
+      achieved: 'Good',
+      time: req?.body?.time,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    Results.create(data).then(function () {
       res.json({ msg: "Result inserted"});
     })
   } catch (error) {

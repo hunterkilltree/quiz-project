@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuestionsForm from './components/QuestionsForm';
+import { postServerData } from '../../helper/helper';
 
 const Quiz = () => {
   const [gameStarted, setGameStarted] = useState(false);
@@ -24,14 +25,28 @@ const Quiz = () => {
     }
   };
 
-  const onHandleSubmit = (timeRemaining) => {
+  const onHandleSubmit = (timeRemaining, answers) => {
     const data = {
-      name: name,
+      username: name,
       university: university,
-      time: timeRemaining
+      time: timeRemaining,
+      answers: answers
     };
     // send this data to server
-    console.log(data);
+    const fetchQuestions = async () => {
+      try {
+        if (answers !== [] && university && !name) throw new Error("Couldn't get Result");
+        await postServerData(
+          // eslint-disable-next-line no-undef
+          `${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`,
+          data,
+          (data) => data
+        );
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    };
+    fetchQuestions();
 
     // Redirect to result page
     navigate('/Result');
