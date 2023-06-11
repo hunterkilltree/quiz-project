@@ -62,6 +62,32 @@ async function calculatePoint(answers, time) {
   return trueCount * time;
 }
 
+async function calculateRank(points, time, username) {
+  const userCount = await Results.countDocuments({
+    $or: [
+      { points: { $gt: points } },
+      {
+        $and: [
+          { points: { $eq: points } },
+          {
+            $or: [
+              { time: { $lt: time } },
+              {
+                $and: [
+                  { time: { $eq: time } },
+                  { username: { $lt: username } }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  });
+
+  return userCount + 1;
+}
+
 export async function storeResult(req, res) {
   try {
     if (!req?.body?.username && !req?.body?.university && !req?.body?.answers) throw new Error('Data not valid ...');
@@ -80,8 +106,9 @@ export async function storeResult(req, res) {
       updatedAt: Date.now(),
     };
 
-    Results.create(data).then(function () {
-      res.json({ msg: "Result inserted"});
+    Results.create(data).then( async function () {
+      const rank = await calculateRank(data.points, data.time, data.username);
+      res.json({ data, rank });
     })
   } catch (error) {
     res.json({ error });
