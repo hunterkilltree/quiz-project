@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import TableBody from '@mui/material/TableBody';
+import TableCell, {tableCellClasses} from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 
-const ResultTable = ({ score, userName, completionTime }) => {
-  const [rank, setRank] = useState(null);
-
+const ResultTable = ({ name, school, time, score }) => {
+const [rank, setRank] = useState(null);
   useEffect(() => {
     // Simulating an API call to fetch the user's rank from the leaderboard
     // Replace this with your actual API call to fetch the rank
@@ -21,21 +24,41 @@ const ResultTable = ({ score, userName, completionTime }) => {
     fetchUserRank();
   }, []);
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+      border: 1
+    }
+  }));
+
   return (
-    <div>
-      <h2>Test Result</h2>
-      <p>Score: {score}</p>
-      <p>User&apos;s Name: {userName}</p>
-      <p>Completion Time: {completionTime}</p>
-      {rank !== null ? <p>Rank in Leaderboard: {rank}</p> : <p>Loading rank...</p>}
-    </div>
+    <TableBody>
+      <StyledTableRow sx={{ '&:last-child td, &:last-child th': { border: 1 } }}>
+        <StyledTableCell align="right">{name}</StyledTableCell>
+        <StyledTableCell align="right">{school}</StyledTableCell>
+        <StyledTableCell align="right">{time}</StyledTableCell>
+        <StyledTableCell align="right">{score}</StyledTableCell>
+        <StyledTableCell align="right">{(rank != null ? rank : <p>Loading rank...</p>)}</StyledTableCell>
+      </StyledTableRow >
+    </TableBody>
   );
 };
 
 ResultTable.propTypes = {
-  score: PropTypes.number.isRequired,
-  userName: PropTypes.string.isRequired,
-  completionTime: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  school: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired
 };
 
 export default ResultTable;
