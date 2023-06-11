@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getServerData } from '../../../helper/helper';
 import Question from './Question';
+import { formatTime } from '../../../components/Util';
 
 const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
@@ -61,12 +62,6 @@ const QuestionsForm = ({ onHandleSubmit }) => {
       console.log(answers);
       onHandleSubmit(timeRemaining, answers);
     }
-  };
-
-  const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (

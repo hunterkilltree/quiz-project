@@ -7,6 +7,8 @@ const Quiz = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [name, setName] = useState('');
   const [university, setUniversity] = useState('');
+  const [userResult, setUserResult] = useState(null);
+
   const navigate = useNavigate();
 
   const handleNameChange = (event) => {
@@ -33,23 +35,25 @@ const Quiz = () => {
       answers: answers
     };
     // send this data to server
-    const fetchQuestions = async () => {
+    const postResult = async () => {
       try {
         if (answers !== [] && university && !name) throw new Error("Couldn't get Result");
-        await postServerData(
+        const userResult = await postServerData(
           // eslint-disable-next-line no-undef
           `${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`,
           data,
           (data) => data
         );
+        console.log(userResult);
+        setUserResult(userResult);
       } catch (error) {
-        console.error('Error fetching questions:', error);
+        console.error('Error post result:', error);
       }
     };
-    fetchQuestions();
+    postResult();
 
     // Redirect to result page
-    navigate('/Result');
+    navigate('/Result', { state: { userResult: userResult } });
   };
 
   return (
