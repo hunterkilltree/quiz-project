@@ -76,6 +76,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               onSelectedOption={(answer) =>
                 handleAnswerChange(questions[currentQuestionIndex].id, answer)
               }
+              answer={answers} // Pass the answer as a prop
             />
           </>
         )}
