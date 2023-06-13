@@ -14,15 +14,15 @@ const Result = () => {
   return (
     <div>
       <h1>Overall Results</h1>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ overflow: 'hidden'}}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">User&apos;s Name</TableCell>
-              <TableCell align="right">School&apos;s Name</TableCell>
-              <TableCell align="right">Completion&nbsp;Time</TableCell>
-              <TableCell align="right">Score</TableCell>
-              <TableCell align="right">Rank&nbsp;in&nbsp;Leaderboard</TableCell>
+          <TableHead sx={{bgcolor: 'text.primary'}}>
+            <TableRow sx={{ 'td, th': { border: 1 }}}>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>User&apos;s Name             </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>School&apos;s Name           </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Score                        </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Completion&nbsp;Time         </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Rank&nbsp;in&nbsp;Leaderboard</TableCell>
             </TableRow>
           </TableHead>
 

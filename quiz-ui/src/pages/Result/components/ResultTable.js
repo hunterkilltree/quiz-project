@@ -19,19 +19,18 @@ const ResultTable = ({ name, school, time, score, rank }) => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-      border: 1
+      backgroundColor: theme.palette.action.hover
     }
   }));
 
   return (
     <TableBody>
-      <StyledTableRow sx={{ '&:last-child td, &:last-child th': { border: 1 } }}>
-        <StyledTableCell align="right">{name}</StyledTableCell>
-        <StyledTableCell align="right">{school}</StyledTableCell>
+      <StyledTableRow sx={{ 'td, th': { border: 1 } }}>
+        <StyledTableCell align="right">{name}            </StyledTableCell>
+        <StyledTableCell align="right">{school}          </StyledTableCell>
+        <StyledTableCell align="right">{score}           </StyledTableCell>
         <StyledTableCell align="right">{formatTime(time)}</StyledTableCell>
-        <StyledTableCell align="right">{score}</StyledTableCell>
-        <StyledTableCell align="right">{rank}</StyledTableCell>
+        <StyledTableCell align="right">{rank}            </StyledTableCell>
       </StyledTableRow>
     </TableBody>
   );

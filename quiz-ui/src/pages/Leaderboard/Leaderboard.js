@@ -9,9 +9,10 @@ const Leaderboard = () => {
     { id: 4, name: 'Emily', school: 'LMN School', score: 70 },
   ];
 
+  // Background for test
   return (
-    <div>
-      <h3>Result View</h3>
+    <div style={{backgroundColor: '#ff9800'}}> 
+      <h3 style={{textAlign: 'center', fontWeight: 'bold', fontSize: 31}}>LEADERBOARD</h3>
       <LeaderboardTable data={leaderboardData} />
     </div>
   );

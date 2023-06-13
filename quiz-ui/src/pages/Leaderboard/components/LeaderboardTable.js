@@ -57,11 +57,8 @@ const LeaderboardTable = () => {
     }
   }));
 
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.red
-    }
-  }));
+  const StyledTableRow = styled(TableRow)(() => ({
+    '&:nth-of-type(odd)': {}}));
 
   return (
     <div>
@@ -69,22 +66,22 @@ const LeaderboardTable = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead sx={{bgcolor: 'text.primary'}}>
             <TableRow sx={{ 'td, th': { border: 1 }}}>
-              <TableCell align="right" sx={{color: '#ffffff'}}> Position</TableCell>
-              <TableCell align="right" sx={{color: '#ffffff'}}> Name    </TableCell>
-              <TableCell align="right" sx={{color: '#ffffff'}}> School  </TableCell>
-              <TableCell align="right" sx={{color: '#ffffff'}}> Score   </TableCell>
-              <TableCell align="right" sx={{color: '#ffffff'}}> Time    </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Position</TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Name    </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> School  </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Score   </TableCell>
+              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Time    </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
             {results.map((result, index) => (
               <StyledTableRow key={index} sx={{ 'td, th': { border: 1 }, bgcolor: (index == 0) ? '#ffff00': (index == 1) ? '#c0c0c0' : (index == 2) ? '#994c00' : 'none' }}>
-                <StyledTableCell align="right"> {index + 1}               </StyledTableCell>
-                <StyledTableCell align="right"> {result.username}         </StyledTableCell>
-                <StyledTableCell align="right"> {result.university}       </StyledTableCell>
-                <StyledTableCell align="right"> {result.points}           </StyledTableCell>
-                <StyledTableCell align="right"> {formatTime(result.time)} </StyledTableCell>
+                <StyledTableCell align="center"> {index + 1}               </StyledTableCell>
+                <StyledTableCell align="center"> {result.username}         </StyledTableCell>
+                <StyledTableCell align="center"> {result.university}       </StyledTableCell>
+                <StyledTableCell align="center"> {result.points}           </StyledTableCell>
+                <StyledTableCell align="center"> {formatTime(result.time)} </StyledTableCell>
               </StyledTableRow>
             ))}
             
