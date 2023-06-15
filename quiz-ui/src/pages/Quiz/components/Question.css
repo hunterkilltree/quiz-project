@@ -1,0 +1,25 @@
+.question-card {
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+  max-width: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+
+}
+
+.question-label {
+
+}
+
+.answer-label {
+  border: 1px solid;
+  width: 50%;
+}
+
+/* Change background color based on question index */
+
+
+/* Add more styles as needed */

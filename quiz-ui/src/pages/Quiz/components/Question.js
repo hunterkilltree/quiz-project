@@ -4,6 +4,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import './Question.css'; // Assuming you have a CSS file named "Question.css" in the same directory
 
 export default function Question({ question, onSelectedOption, answer }) {
   const handleChange = (event) => {
@@ -13,14 +14,20 @@ export default function Question({ question, onSelectedOption, answer }) {
   };
 
   return (
-    <>
-      <FormLabel>{question.question}</FormLabel>
+    <div className="question-card">
+      <FormLabel className="question-label">{question.question}</FormLabel>
       <RadioGroup value={`${answer[question.id]}` ?? ' '} onChange={handleChange}>
         {question?.options.map((q, i) => (
-          <FormControlLabel key={i} value={i} control={<Radio />} label={q} />
+          <FormControlLabel
+            key={i}
+            value={i}
+            control={<Radio />}
+            label={q}
+            className="answer-label"
+          />
         ))}
       </RadioGroup>
-    </>
+    </div>
   );
 }
 

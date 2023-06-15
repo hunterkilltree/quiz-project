@@ -12,7 +12,6 @@ export const App = () => {
       <NavBar />
       <Routes>
         <Route exact path="/Home" element={<Home />} />
-        <Route path="/" element={<Home />}></Route>
         <Route exact path="/Quiz" element={<Quiz />} />
         <Route exact path="/Leaderboard" element={<Leaderboard />} />
         <Route exact path="/Result" element={<Result />} />
