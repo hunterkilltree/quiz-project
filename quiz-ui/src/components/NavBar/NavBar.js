@@ -39,9 +39,6 @@ const NavBar = () => {
           <a href="/Quiz" className={location.pathname === "/Quiz" ? "nav-active" : "nav-non-active"}>QUIZ</a>
           </li>
           <li>
-            <a href="/Result" className={location.pathname === "/Result" ? "nav-active" : "nav-non-active"}>RESULT</a>
-          </li>
-          <li>
             <a href="/Leaderboard" className={location.pathname === "/Leaderboard" ? "nav-active" : "nav-non-active"}>LEADERBOARD</a>
           </li>
         </ul>

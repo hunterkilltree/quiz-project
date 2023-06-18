@@ -9,13 +9,28 @@ import './Question.css'; // Assuming you have a CSS file named "Question.css" in
 export default function Question({ question, onSelectedOption, answer }) {
   const handleChange = (event) => {
     if (onSelectedOption) {
+      setIndex(event.target.value);
       onSelectedOption(event.target.value);
     }
   };
 
+  React.useEffect(()=>{
+    //call your increment function here
+    if (answer[question.id] == null) {
+      setIndex(-1);
+    }
+    else {
+      setIndex(answer[question.id]);
+    }
+  },[question])
+
+  var [index, setIndex] = React.useState(-1);
+
+
+
   return (
     <div className="question-card">
-      <FormLabel className="question-label">{question.question}</FormLabel>
+      <FormLabel className="active-question-no">{question.question}</FormLabel>
       <RadioGroup value={`${answer[question.id]}` ?? ' '} onChange={handleChange}>
         {question?.options.map((q, i) => (
           <FormControlLabel
@@ -23,7 +38,7 @@ export default function Question({ question, onSelectedOption, answer }) {
             value={i}
             control={<Radio />}
             label={q}
-            className="answer-label"
+            className={(index == i) ? "answer-label-chosen" : "answer-label"}
           />
         ))}
       </RadioGroup>
