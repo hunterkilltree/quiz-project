@@ -68,33 +68,35 @@ const QuestionsForm = ({ onHandleSubmit }) => {
       <h2>Question Form</h2>
       <p>Time Remaining: {formatTime(timeRemaining)}</p>
 
-      <form onSubmit={handleSubmit}>
-        {questions.length > 0 && (
-          <>
-            <Question
-              question={questions[currentQuestionIndex]}
-              onSelectedOption={(answer) =>
-                handleAnswerChange(questions[currentQuestionIndex].id, answer)
-              }
-              answer={answers} // Pass the answer as a prop
-            />
-          </>
-        )}
+      <div className="quiz-container">
+        <form onSubmit={handleSubmit}>
+          {questions.length > 0 && (
+            <>
+              <Question
+                question={questions[currentQuestionIndex]}
+                onSelectedOption={(answer) =>
+                  handleAnswerChange(questions[currentQuestionIndex].id, answer)
+                }
+                answer={answers} // Pass the answer as a prop
+              />
+            </>
+          )}
 
-        <button
-          type="button"
-          onClick={handlePreviousQuestion}
-          disabled={currentQuestionIndex === 0}>
-          Previous
-        </button>
-        <button
-          type="button"
-          onClick={handleNextQuestion}
-          disabled={currentQuestionIndex === questions.length - 1}>
-          Next
-        </button>
-        {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
-      </form>
+          <button
+            type="button"
+            onClick={handlePreviousQuestion}
+            disabled={currentQuestionIndex === 0}>
+            Previous
+          </button>
+          <button
+            type="button"
+            onClick={handleNextQuestion}
+            disabled={currentQuestionIndex === questions.length - 1}>
+            Next
+          </button>
+          {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
+        </form>
+      </div>
     </div>
   );
 };

@@ -55,10 +55,8 @@ const Quiz = () => {
 
   return (
     <div>
-      <h3>Quiz</h3>
-      <p>This is the about view of the quiz</p>
       {!gameStarted && (
-        <div>
+        <div className='quiz-user'>
           <input type="text" placeholder="Name" value={name} onChange={handleNameChange} />
           <input
             type="text"
