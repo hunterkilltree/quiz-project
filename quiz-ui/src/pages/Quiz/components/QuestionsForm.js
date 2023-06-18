@@ -9,6 +9,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
   const [answers, setAnswers] = useState({}); // Object to store user answers
+  const [classAnimation, setClassAnimation] = useState('fade-out');
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -40,10 +41,12 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   }, []);
 
   const handleNextQuestion = () => {
+    setClassAnimation('fade-out');
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePreviousQuestion = () => {
+    setClassAnimation('fade-in');
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
@@ -64,39 +67,41 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   };
 
   return (
-    <div>
+    <div className="quiz-container">
       <h2>Question Form</h2>
       <p>Time Remaining: {formatTime(timeRemaining)}</p>
+      <form onSubmit={handleSubmit}>
+        {questions.length > 0 && (
+          <>
+            <Question
+              question={questions[currentQuestionIndex]}
+              onSelectedOption={(answer) =>
+                handleAnswerChange(questions[currentQuestionIndex].id, answer)
+              }
+              answer={answers} // Pass the answer as a prop
+              classAnimation={classAnimation}
+            />
+          </>
+        )}
 
-      <div className="quiz-container">
-        <form onSubmit={handleSubmit}>
-          {questions.length > 0 && (
-            <>
-              <Question
-                question={questions[currentQuestionIndex]}
-                onSelectedOption={(answer) =>
-                  handleAnswerChange(questions[currentQuestionIndex].id, answer)
-                }
-                answer={answers} // Pass the answer as a prop
-              />
-            </>
-          )}
-
+        {currentQuestionIndex !== 0 && (
           <button
             type="button"
             onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}>
             Previous
           </button>
+        )}
+        {currentQuestionIndex !== 4 && (
           <button
             type="button"
             onClick={handleNextQuestion}
             disabled={currentQuestionIndex === questions.length - 1}>
             Next
           </button>
-          {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
-        </form>
-      </div>
+        )}
+        {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
+      </form>
     </div>
   );
 };

@@ -4,33 +4,22 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import './Question.css'; // Assuming you have a CSS file named "Question.css" in the same directory
+import './Question.css';
+import inspiredNt_logo from '../../../components/Logo/inspiredNt_logo.png';
 
-export default function Question({ question, onSelectedOption, answer }) {
+export default function Question({ question, onSelectedOption, answer, classAnimation }) {
   const handleChange = (event) => {
     if (onSelectedOption) {
-      setIndex(event.target.value);
       onSelectedOption(event.target.value);
     }
   };
 
-  React.useEffect(()=>{
-    //call your increment function here
-    if (answer[question.id] == null) {
-      setIndex(-1);
-    }
-    else {
-      setIndex(answer[question.id]);
-    }
-  },[question])
-
-  var [index, setIndex] = React.useState(-1);
-
-
-
   return (
-    <div className="question-card">
-      <FormLabel className="active-question-no">{question.question}</FormLabel>
+    <div className={`question-card ${classAnimation}`}>
+      <div className="question-image">
+        <img src={inspiredNt_logo} alt="Logo" className="question-image" />
+      </div>
+      <FormLabel className="question-label">{question.question}</FormLabel>
       <RadioGroup value={`${answer[question.id]}` ?? ' '} onChange={handleChange}>
         {question?.options.map((q, i) => (
           <FormControlLabel
@@ -38,7 +27,7 @@ export default function Question({ question, onSelectedOption, answer }) {
             value={i}
             control={<Radio />}
             label={q}
-            className={(index == i) ? "answer-label-chosen" : "answer-label"}
+            className="answer-label"
           />
         ))}
       </RadioGroup>
@@ -49,5 +38,6 @@ export default function Question({ question, onSelectedOption, answer }) {
 Question.propTypes = {
   question: PropTypes.object,
   onSelectedOption: PropTypes.func,
-  answer: PropTypes.object
+  answer: PropTypes.object,
+  classAnimation: PropTypes.string
 };
