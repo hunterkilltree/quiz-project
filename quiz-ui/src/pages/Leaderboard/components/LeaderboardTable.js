@@ -30,7 +30,11 @@ const LeaderboardTable = () => {
             return b.points - a.points; // Sort by points in descending order
           }
           if (a.time !== b.time) {
-            return a.time.localeCompare(b.time); // Sort by time in ascending order
+            // Convert time strings to Date objects for comparison
+            const timeA = new Date(a.time);
+            const timeB = new Date(b.time);
+
+            return timeA - timeB; // Sort by time in ascending order
           }
           return a.username.localeCompare(b.username); // Sort by username in ascending order
         });
@@ -58,33 +62,60 @@ const LeaderboardTable = () => {
   }));
 
   const StyledTableRow = styled(TableRow)(() => ({
-    '&:nth-of-type(odd)': {}}));
+    '&:nth-of-type(odd)': {}
+  }));
 
   return (
     <div>
-      <TableContainer  component={Paper} sx={{ overflow: 'hidden'}}>
+      <TableContainer component={Paper} sx={{ overflow: 'hidden' }}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead sx={{bgcolor: 'text.primary'}}>
-            <TableRow sx={{ 'td, th': { border: 1 }}}>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Position</TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Name    </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> School  </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Score   </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}> Time    </TableCell>
+          <TableHead sx={{ bgcolor: 'text.primary' }}>
+            <TableRow sx={{ 'td, th': { border: 1 } }}>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                {' '}
+                Position
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                {' '}
+                Name{' '}
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                {' '}
+                School{' '}
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                {' '}
+                Score{' '}
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                {' '}
+                Time{' '}
+              </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
             {results.map((result, index) => (
-              <StyledTableRow key={index} sx={{ 'td, th': { border: 1 }, bgcolor: (index == 0) ? '#ffff00': (index == 1) ? '#c0c0c0' : (index == 2) ? '#994c00' : 'none' }}>
-                <StyledTableCell align="center"> {index + 1}               </StyledTableCell>
-                <StyledTableCell align="center"> {result.username}         </StyledTableCell>
-                <StyledTableCell align="center"> {result.university}       </StyledTableCell>
-                <StyledTableCell align="center"> {result.points}           </StyledTableCell>
+              <StyledTableRow
+                key={index}
+                sx={{
+                  'td, th': { border: 1 },
+                  bgcolor:
+                    index == 0
+                      ? '#ffff00'
+                      : index == 1
+                      ? '#c0c0c0'
+                      : index == 2
+                      ? '#994c00'
+                      : 'none'
+                }}>
+                <StyledTableCell align="center"> {index + 1} </StyledTableCell>
+                <StyledTableCell align="center"> {result.username} </StyledTableCell>
+                <StyledTableCell align="center"> {result.university} </StyledTableCell>
+                <StyledTableCell align="center"> {result.points} </StyledTableCell>
                 <StyledTableCell align="center"> {formatTime(result.time)} </StyledTableCell>
               </StyledTableRow>
             ))}
-            
           </TableBody>
         </Table>
       </TableContainer>
