@@ -1,17 +1,15 @@
 {
   "version": 2,
-  "name": "quiz-project-be",
   "builds": [
-     { 
-      "src": "package.json", 
-      "use": "@vercel/node",
-      "config": {
-      "include": ["posts"]
-     }
-    }
+      {
+          "src": "server.js",
+          "use": "@now/node"
+      }
   ],
   "routes": [
-     { "src": "/(.*)", "dest": "/" }
+      {
+          "src": "/(.*)",
+          "dest": "server.js"
+      }
   ]
 }
-
