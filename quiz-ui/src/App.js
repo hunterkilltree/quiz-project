@@ -3,24 +3,27 @@ import { Home } from './pages/Home';
 import { Quiz } from './pages/Quiz';
 import { Result } from './pages/Result';
 import { NavBar } from './components/NavBar';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Leaderboard } from './pages/Leaderboard';
 
 export const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
-    navigate('/Home');
-  }, [navigate]);
+    if (location.pathname === '/quiz-project') {
+      navigate('/Home');
+    }
+  }, [location.pathname, navigate]);
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route exact path="/Home" element={<Home />} />
-        <Route exact path="/Quiz" element={<Quiz />} />
-        <Route exact path="/Leaderboard" element={<Leaderboard />} />
-        <Route exact path="/Result" element={<Result />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Quiz" element={<Quiz />} />
+        <Route path="/Leaderboard" element={<Leaderboard />} />
+        <Route path="/Result" element={<Result />} />
       </Routes>
     </div>
   );
