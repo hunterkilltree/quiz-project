@@ -11,7 +11,8 @@ export const App = () => {
   const location = useLocation();
 
   React.useEffect(() => {
-    if (location.pathname === '/quiz-project') {
+    console.log(location.pathname);
+    if (location.pathname === '/quiz-project' || location.pathname === '/quiz-project/') {
       navigate('/Home');
     }
   }, [location.pathname, navigate]);
