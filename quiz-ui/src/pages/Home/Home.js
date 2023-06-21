@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,11 +16,11 @@ const Home = () => {
 
   return (
     <Card sx={{ maxWidth: '100%' }}>
-      <CardMedia
-        sx={{ height: 200 }}
-        image="https://alumni.csiro.au/wp-content/uploads/2021/08/National-Science-Week-2021.gif"
-        title="green iguana"
-      />
+      <img
+        src="https://alumni.csiro.au/wp-content/uploads/2021/08/National-Science-Week-2021.gif"
+        alt='green iguana'
+        style={{width: '100%'}}>
+      </img>
       <CardContent>
         <Typography
           sx={{ fontWeight: 700, color: 'warning.main' }}
@@ -37,7 +36,7 @@ const Home = () => {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="contained" onClick={handleGoGame}>
+        <Button variant="contained" color='warning' endIcon={<ArrowForwardIcon />} onClick={handleGoGame}>
           Quiz Time
         </Button>
       </CardActions>
