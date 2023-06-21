@@ -3,10 +3,16 @@ import { Home } from './pages/Home';
 import { Quiz } from './pages/Quiz';
 import { Result } from './pages/Result';
 import { NavBar } from './components/NavBar';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Leaderboard } from './pages/Leaderboard';
 
 export const App = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    navigate('/Home');
+  }, [navigate]);
+
   return (
     <div>
       <NavBar />
