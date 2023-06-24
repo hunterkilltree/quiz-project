@@ -9,7 +9,6 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
   const [answers, setAnswers] = useState({}); // Object to store user answers
-  const [classAnimation, setClassAnimation] = useState('fade-out');
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -41,12 +40,10 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   }, []);
 
   const handleNextQuestion = () => {
-    setClassAnimation('fade-out');
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePreviousQuestion = () => {
-    setClassAnimation('fade-in');
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
@@ -79,7 +76,6 @@ const QuestionsForm = ({ onHandleSubmit }) => {
                 handleAnswerChange(questions[currentQuestionIndex].id, answer)
               }
               answer={answers} // Pass the answer as a prop
-              classAnimation={classAnimation}
             />
           </>
         )}

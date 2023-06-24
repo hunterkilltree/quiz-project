@@ -7,22 +7,37 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useLocation } from 'react-router-dom';
+import congratulation from '../../components/Logo/congratulation.png';
+import './Result.css';
 
 const Result = () => {
   const location = useLocation();
   const result = location.state;
   return (
-    <div>
+    <div className="result-page">
       <h1>Overall Results</h1>
-      <TableContainer component={Paper} sx={{ overflow: 'hidden'}}>
+      <div className="image-container">
+        <img src={congratulation} alt="congratulation" className="congratulation-image" />
+      </div>
+      <TableContainer component={Paper} sx={{ overflow: 'hidden' }}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead sx={{bgcolor: 'text.primary'}}>
-            <TableRow sx={{ 'td, th': { border: 1 }}}>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>User&apos;s Name             </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>School&apos;s Name           </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Score                        </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Completion&nbsp;Time         </TableCell>
-              <TableCell align="center" sx={{color: '#ffffff', fontWeight: 'bold'}}>Rank&nbsp;in&nbsp;Leaderboard</TableCell>
+          <TableHead sx={{ bgcolor: 'text.primary' }}>
+            <TableRow sx={{ 'td, th': { border: 1 } }}>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                User&apos;s Name
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                School&apos;s Name
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                Score
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                Completion&nbsp;Time
+              </TableCell>
+              <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
+                Rank&nbsp;in&nbsp;Leaderboard
+              </TableCell>
             </TableRow>
           </TableHead>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './NavBar.css';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -33,25 +34,25 @@ const NavBar = () => {
         <div className={isNavExpanded ? 'navigation-menu expanded' : 'navigation-menu'}>
           <ul>
             <li>
-              <a
-                href="/Home"
+              <Link
+                to="/Home"
                 className={location.pathname === '/Home' ? 'nav-active' : 'nav-non-active'}>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/Quiz"
+              <Link
+                to="/Quiz"
                 className={location.pathname === '/Quiz' ? 'nav-active' : 'nav-non-active'}>
                 Quiz
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/Leaderboard"
+              <Link
+                to="/Leaderboard"
                 className={location.pathname === '/Leaderboard' ? 'nav-active' : 'nav-non-active'}>
                 Leaderboard
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
