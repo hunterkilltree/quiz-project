@@ -11,8 +11,12 @@ const Leaderboard = () => {
 
   // Background for test
   return (
-    <div style={{backgroundColor: '#ff9800'}}> 
-      <h3 style={{textAlign: 'center', fontWeight: 'bold', fontSize: 31}}>LEADERBOARD</h3>
+    <div> 
+      <h3 style={{textAlign: 'center', fontWeight: 'bold', 
+                  fontSize: 31, color: '#E94A06'
+                }}>
+          LEADERBOARD
+        </h3>
       <LeaderboardTable data={leaderboardData} />
     </div>
   );
