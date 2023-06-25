@@ -51,7 +51,7 @@ const LeaderboardTable = () => {
             const timeA = new Date(a.time);
             const timeB = new Date(b.time);
 
-            return timeA - timeB; // Sort by time in ascending order
+            return timeB - timeA; // Sort by time in ascending order
           }
           return a.username.localeCompare(b.username); // Sort by username in ascending order
         });
