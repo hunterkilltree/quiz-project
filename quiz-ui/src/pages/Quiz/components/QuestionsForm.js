@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(2); // 20 minutes in seconds
+  const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
   const [answers, setAnswers] = useState({}); // Object to store user answers
   const [questionsLoaded, setQuestionsLoaded] = useState(false); // Track if questions are loaded
   const [loading, setLoading] = useState(true); // Track loading state
