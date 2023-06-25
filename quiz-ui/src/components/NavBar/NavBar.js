@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -7,17 +8,25 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    navigate('/Home');
+  };
+
   return (
     <>
       <nav className="navigation">
         <img
           src="https://images.squarespace-cdn.com/content/v1/5e7edd655234e75594647807/1586498728796-Q9USRXPO6FFZOCYXAD57/Screen+Shot+2020-04-10+at+3.35.11+pm.png?format=1500w"
           alt="Logo"
+          onClick={handleImageClick}
         />
+
         <button
           className="hamburger"
           onClick={() => {
-            setIsNavExpanded(!isNavExpanded);
+            setIsNavExpanded(true);
           }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +44,9 @@ const NavBar = () => {
           <ul>
             <li>
               <Link
+                onClick={() => {
+                  setIsNavExpanded(false);
+                }}
                 to="/Home"
                 className={location.pathname === '/Home' ? 'nav-active' : 'nav-non-active'}>
                 Home
@@ -42,6 +54,9 @@ const NavBar = () => {
             </li>
             <li>
               <Link
+                onClick={() => {
+                  setIsNavExpanded(false);
+                }}
                 to="/Quiz"
                 className={location.pathname === '/Quiz' ? 'nav-active' : 'nav-non-active'}>
                 Quiz
@@ -49,6 +64,9 @@ const NavBar = () => {
             </li>
             <li>
               <Link
+                onClick={() => {
+                  setIsNavExpanded(false);
+                }}
                 to="/Leaderboard"
                 className={location.pathname === '/Leaderboard' ? 'nav-active' : 'nav-non-active'}>
                 Leaderboard

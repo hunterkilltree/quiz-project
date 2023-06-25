@@ -69,14 +69,6 @@ const LeaderboardTable = () => {
     fetchResults();
   }, []);
 
-  if (!results || results.length === 0) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress color="success" />
-      </Box>
-    );
-  }
-
   // Avoid a layout jump when reaching the last page with empty rows.
   // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - results.length) : 0;
 
@@ -108,26 +100,34 @@ const LeaderboardTable = () => {
         </TableHead>
 
         <TableBody>
-          {(rowsPerPage > 0
-            ? results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : results
-          ).map((result, index) => (
-            <TableRow key={index} sx={{ 'td, th': { border: 1 } }}>
-              <TableCell align="center">{page * rowsPerPage + index + 1}</TableCell>
-              <TableCell align="center">
-                <Tooltip title={result.username} placement="top">
-                  <span>{TruncatedName(result.username)}</span>
-                </Tooltip>
+          {!results || results.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={5} align="center">
+                <CircularProgress color="secondary" />
               </TableCell>
-              <TableCell align="center">
-                <Tooltip title={result.university} placement="top">
-                  <span>{TruncatedName(result.university)}</span>
-                </Tooltip>
-              </TableCell>
-              <TableCell align="center">{result.points}</TableCell>
-              <TableCell align="center">{formatTime(result.time)}</TableCell>
             </TableRow>
-          ))}
+          ) : (
+            (rowsPerPage > 0
+              ? results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : results
+            ).map((result, index) => (
+              <TableRow key={index} sx={{ 'td, th': { border: 1 } }}>
+                <TableCell align="center">{page * rowsPerPage + index + 1}</TableCell>
+                <TableCell align="center">
+                  <Tooltip title={result.username} placement="top">
+                    <span>{TruncatedName(result.username)}</span>
+                  </Tooltip>
+                </TableCell>
+                <TableCell align="center">
+                  <Tooltip title={result.university} placement="top">
+                    <span>{TruncatedName(result.university)}</span>
+                  </Tooltip>
+                </TableCell>
+                <TableCell align="center">{result.points}</TableCell>
+                <TableCell align="center">{formatTime(result.time)}</TableCell>
+              </TableRow>
+            ))
+          )}
           {/* {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={5} />

@@ -19,7 +19,7 @@ const Result = () => {
       <div className="image-container">
         <img src={congratulation} alt="congratulation" className="congratulation-image" />
       </div>
-      <TableContainer component={Paper} sx={{ overflow: 'hidden' }}>
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead sx={{ bgcolor: 'text.primary' }}>
             <TableRow sx={{ 'td, th': { border: 1 } }}>
@@ -27,7 +27,7 @@ const Result = () => {
                 User&apos;s Name
               </TableCell>
               <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
-                School&apos;s Name
+                University&apos;s Name
               </TableCell>
               <TableCell align="center" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
                 Score
