@@ -70,7 +70,9 @@ const QuestionsForm = ({ onHandleSubmit }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     // Submit answers to the server or perform any necessary actions
     if (onHandleSubmit) {
       onHandleSubmit(timeRemaining, answers);
