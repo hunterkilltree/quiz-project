@@ -39,7 +39,7 @@ export async function deleteQuestions(req, res) {
 /** RESULT */
 export async function getResult(req, res) {
   try {
-    const r = await Results.find();
+    const r = await Results.find({}, { result: 0 });
     res.json(r);
   } catch (error) {
     res.json({ error });
@@ -97,7 +97,7 @@ export async function storeResult(req, res) {
     const data = {
       username: req?.body?.username,
       university: req?.body?.university,
-      result: answers,
+      result: [req.body.answers],
       attempts: 1,
       points: points,
       achieved: 'Good',
