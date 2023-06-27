@@ -17,7 +17,7 @@
   margin-left: 20px;
 }
 
-.answer-label {
+/* .answer-label {
   border: 1px solid;
   margin-top: 20px;
   margin-left: -40px;
@@ -32,7 +32,7 @@
   margin-left: -40px;
   align-self: center;
   background: linear-gradient(90.04deg, #ffc0cb 0.03%, #800080 99.96%);
-}
+} */
 
 /* Change background color based on question index */
 
@@ -40,11 +40,11 @@
 /* Add more styles as needed */
 .quiz-container {
   max-width: 100%;
-  min-width: 250px;
   background: #ffffff;
   border-radius: 4px;
   margin-top: 100px;
   padding: 30px 60px;
+  align-items: center;
 }
 
 .quiz-container .active-question-no {
@@ -104,42 +104,6 @@
   background: #e7e8e9;
   color: #9fa3a9;
   cursor: not-allowed;
-}
-
-.flex-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.question-card {
-  opacity: 0;
-  animation: fade-in 0.5s forwards;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(100);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(10);
-  }
-}
-
-.fade-out {
-  animation: fade-out 0.5s forwards;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 0;
-    transform: translateY(100);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-10);
-  }
 }
 
 .question-image {

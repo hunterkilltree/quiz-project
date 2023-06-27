@@ -48,6 +48,7 @@ const Quiz = () => {
       answers: answers
     };
     // send this data to server
+
     const postResult = async () => {
       try {
         if (answers !== [] && university && !name) throw new Error("Couldn't get Result");
@@ -67,7 +68,12 @@ const Quiz = () => {
   };
 
   return (
-    <div>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      fullWidth>
       {!gameStarted && (
         <Box
           display="flex"
@@ -107,7 +113,7 @@ const Quiz = () => {
         </Box>
       )}
       {gameStarted && <QuestionsForm onHandleSubmit={onHandleSubmit} />}
-    </div>
+    </Box>
   );
 };
 

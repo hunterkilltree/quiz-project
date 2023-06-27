@@ -6,14 +6,17 @@ import { formatTime } from '../../../components/Util';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+// import FormControl from '@mui/material/FormControl';
 
 const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1200); // 20 minutes in seconds
   const [answers, setAnswers] = useState({}); // Object to store user answers
+  const [answersIndex, setAnswersIndex] = useState({}); // Object to store user answers
   const [questionsLoaded, setQuestionsLoaded] = useState(false); // Track if questions are loaded
   const [loading, setLoading] = useState(true); // Track loading state
+  const [x, setX] = useState(-200);
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -56,17 +59,24 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   }, [questionsLoaded]);
 
   const handleNextQuestion = () => {
+    setX(200);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePreviousQuestion = () => {
+    setX(-200);
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
-  const handleAnswerChange = (questionId, answer) => {
+  const handleAnswerChange = (questionId, answer, answerIndex) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: answer
+    }));
+
+    setAnswersIndex((prevAnswersIndex) => ({
+      ...prevAnswersIndex,
+      [questionId]: answerIndex
     }));
   };
 
@@ -75,7 +85,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
 
     // Submit answers to the server or perform any necessary actions
     if (onHandleSubmit) {
-      onHandleSubmit(timeRemaining, answers);
+      onHandleSubmit(timeRemaining, answersIndex);
     }
   };
 
@@ -101,10 +111,11 @@ const QuestionsForm = ({ onHandleSubmit }) => {
           <>
             <Question
               question={questions[currentQuestionIndex]}
-              onSelectedOption={(answer) =>
-                handleAnswerChange(questions[currentQuestionIndex].id, answer)
+              onSelectedOption={(answer, answerIndex) =>
+                handleAnswerChange(questions[currentQuestionIndex].id, answer, answerIndex)
               }
               answer={answers} // Pass the answer as a prop
+              x={x}
             />
           </>
         )}
