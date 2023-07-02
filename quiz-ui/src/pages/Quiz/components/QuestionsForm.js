@@ -18,7 +18,8 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [answersIndex, setAnswersIndex] = useState({}); // Object to store user answers
   const [questionsLoaded, setQuestionsLoaded] = useState(false); // Track if questions are loaded
   const [loading, setLoading] = useState(true); // Track loading state
-  const [x, setX] = useState(-200);
+  const [x, setX] = useState(200);
+  const [rotateY, setRotateY] = useState(0);
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -62,11 +63,13 @@ const QuestionsForm = ({ onHandleSubmit }) => {
 
   const handleNextQuestion = () => {
     setX(200);
+    setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePreviousQuestion = () => {
     setX(-200);
+    setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
@@ -118,6 +121,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               }
               answer={answers} // Pass the answer as a prop
               x={x}
+              rotateY={rotateY}
             />
           </Card>
         )}
