@@ -13,6 +13,10 @@ import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
+import gold from '../../../components/Icons/gold.png';
+import silver from '../../../components/Icons/silver.png';
+import bronze from '../../../components/Icons/bronze.png';
+import white from '../../../components/Icons/white.png';
 
 function TruncatedName(name) {
   let truncatedName = name;
@@ -78,22 +82,38 @@ const LeaderboardTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="medium" aria-label="leaderboard table">
+      <Table sx={{ margin: 'auto', width: '85%', minWidth: 650, border: 'solid 3px #fff' }} size="medium" aria-label="leaderboard table">
         <TableHead>
-          <TableRow sx={{ 'td, th': { border: 1 } }}>
-            <TableCell align="center" sx={{ fontWeight: 'bold', width: '10%' }}>
-              Rank#
+          <TableRow sx={{borderBottom: 'solid 2px #fff', bgcolor: '#BFC3CA'}}>
+            <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                          width: '10%',
+                                          color: '#306FEE',
+                                          fontSize: '17px !important',
+                                          paddingLeft: '25px' }}>
+              Position
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', width: '20%' }}>
+            <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                          width: '10%',
+                                          color: '#306FEE',
+                                          fontSize: '17px !important' }}>
               Name
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', width: '20%' }}>
+            <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                          width: '10%',
+                                          color: '#306FEE',
+                                          fontSize: '17px !important' }}>
               University
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', width: '10%' }}>
+            <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                          width: '10%',
+                                          color: '#306FEE',
+                                          fontSize: '17px !important' }}>
               Score
             </TableCell>
-            <TableCell align="center" sx={{ fontWeight: 'bold', width: '10%' }}>
+            <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                          width: '10%',
+                                          color: '#306FEE',
+                                          fontSize: '17px !important' }}>
               Time
             </TableCell>
           </TableRow>
@@ -102,7 +122,7 @@ const LeaderboardTable = () => {
         <TableBody>
           {!results || results.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} align="center">
+              <TableCell colSpan={5} align="center" sx={{ bgcolor: '#fff'}}>
                 <CircularProgress color="secondary" />
               </TableCell>
             </TableRow>
@@ -111,20 +131,37 @@ const LeaderboardTable = () => {
               ? results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : results
             ).map((result, index) => (
-              <TableRow key={index} sx={{ 'td, th': { border: 1 } }}>
-                <TableCell align="center">{page * rowsPerPage + index + 1}</TableCell>
-                <TableCell align="center">
+              <TableRow key={index} sx={{bgcolor: (index % 2 == 1) ? '#ECEFF4' : '#F9F9F9', borderBottom: 'solid 2px #fff'}}>
+                <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                              fontSize: '15px !important', 
+                                              paddingBottom: '25px',
+                                              paddingLeft: (page * rowsPerPage + index == 9) ? '20px' : '30px' }}>
+                  {page * rowsPerPage + index + 1} <img src={(page * rowsPerPage + index == 0)          ? gold
+                                                           : (page * rowsPerPage + index == 1)          ? silver
+                                                           : (page * rowsPerPage + index == 2)          ? bronze 
+                                                           : (page * rowsPerPage + index < rowsPerPage) ? white
+                                                           : ''} 
+                                                        height='35px' 
+                                                        style={{marginBottom: '-10px'}}/>
+                </TableCell>
+                <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                              paddingLeft: '20px' }}>
                   <Tooltip title={result.username} placement="top">
                     <span>{TruncatedName(result.username)}</span>
                   </Tooltip>
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="left" sx={{ fontWeight: 'bold', 
+                                              paddingLeft: '20px' }}>
                   <Tooltip title={result.university} placement="top">
                     <span>{TruncatedName(result.university)}</span>
                   </Tooltip>
                 </TableCell>
-                <TableCell align="center">{result.points}</TableCell>
-                <TableCell align="center">{formatTime(result.time)}</TableCell>
+                <TableCell align="left" sx={{ paddingLeft: '20px' }}>
+                  <span style={{fontWeight: 'bold'}}>{result.points}</span> pts
+                  </TableCell>
+                <TableCell align="left" sx={{ paddingLeft: '20px' }}>
+                  {formatTime(1200 - result.time)}
+                </TableCell>
               </TableRow>
             ))
           )}
