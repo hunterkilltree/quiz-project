@@ -12,10 +12,10 @@ const Leaderboard = () => {
   // Background for test
   return (
     <div>
-      <h3 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 31, color: '#E94A06' }}>
+      <h3 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 31, paddingTop: 15 }}>
         LEADERBOARD
       </h3>
-      <LeaderboardTable data={leaderboardData} />
+      <LeaderboardTable data={leaderboardData}/>
     </div>
   );
 };
