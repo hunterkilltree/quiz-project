@@ -84,46 +84,36 @@ const LeaderboardTable = () => {
     <TableContainer component={Paper}>
       <Table sx={{ margin: 'auto', width: '85%', minWidth: 650, border: 'solid 3px #fff' }} size="medium" aria-label="leaderboard table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{borderBottom: 'solid 2px #fff', bgcolor: '#BFC3CA'}}>
             <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                          width: '10%', 
-                                          bgcolor: '#BFC3CA', 
+                                          width: '10%',
                                           color: '#306FEE',
-                                          fontSize: '15px !important',
-                                          paddingLeft: '25px',
-                                          borderBottom: 'solid 2px #fff' }}>
+                                          fontSize: '17px !important',
+                                          paddingLeft: '25px' }}>
               Position
             </TableCell>
             <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                          width: '10%', 
-                                          bgcolor: '#BFC3CA', 
+                                          width: '10%',
                                           color: '#306FEE',
-                                          fontSize: '15px !important',
-                                          borderBottom: 'solid 2px #fff' }}>
+                                          fontSize: '17px !important' }}>
               Name
             </TableCell>
             <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                          width: '10%', 
-                                          bgcolor: '#BFC3CA', 
+                                          width: '10%',
                                           color: '#306FEE',
-                                          fontSize: '15px !important',
-                                          borderBottom: 'solid 2px #fff' }}>
+                                          fontSize: '17px !important' }}>
               University
             </TableCell>
             <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                          width: '10%', 
-                                          bgcolor: '#BFC3CA', 
+                                          width: '10%',
                                           color: '#306FEE',
-                                          fontSize: '15px !important',
-                                          borderBottom: 'solid 2px #fff' }}>
+                                          fontSize: '17px !important' }}>
               Score
             </TableCell>
             <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                          width: '10%', 
-                                          bgcolor: '#BFC3CA', 
+                                          width: '10%',
                                           color: '#306FEE',
-                                          fontSize: '15px !important',
-                                          borderBottom: 'solid 2px #fff' }}>
+                                          fontSize: '17px !important' }}>
               Time
             </TableCell>
           </TableRow>
@@ -141,12 +131,11 @@ const LeaderboardTable = () => {
               ? results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : results
             ).map((result, index) => (
-              <TableRow key={index} sx={{bgcolor: (index % 2 == 1) ? '#ECEFF4' : '#F9F9F9'}}>
+              <TableRow key={index} sx={{bgcolor: (index % 2 == 1) ? '#ECEFF4' : '#F9F9F9', borderBottom: 'solid 2px #fff'}}>
                 <TableCell align="left" sx={{ fontWeight: 'bold', 
                                               fontSize: '15px !important', 
                                               paddingBottom: '25px',
-                                              paddingLeft: (page * rowsPerPage + index == 9) ? '20px' : '30px',
-                                              borderBottom: 'solid 2px #fff' }}>
+                                              paddingLeft: (page * rowsPerPage + index == 9) ? '20px' : '30px' }}>
                   {page * rowsPerPage + index + 1} <img src={(page * rowsPerPage + index == 0)          ? gold
                                                            : (page * rowsPerPage + index == 1)          ? silver
                                                            : (page * rowsPerPage + index == 2)          ? bronze 
@@ -156,25 +145,21 @@ const LeaderboardTable = () => {
                                                         style={{marginBottom: '-10px'}}/>
                 </TableCell>
                 <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                              paddingLeft: '20px',
-                                              borderBottom: 'solid 2px #fff' }}>
+                                              paddingLeft: '20px' }}>
                   <Tooltip title={result.username} placement="top">
                     <span>{TruncatedName(result.username)}</span>
                   </Tooltip>
                 </TableCell>
                 <TableCell align="left" sx={{ fontWeight: 'bold', 
-                                              paddingLeft: '20px', 
-                                              borderBottom: 'solid 2px #fff' }}>
+                                              paddingLeft: '20px' }}>
                   <Tooltip title={result.university} placement="top">
                     <span>{TruncatedName(result.university)}</span>
                   </Tooltip>
                 </TableCell>
-                <TableCell align="left" sx={{ paddingLeft: '20px',
-                                              borderBottom: 'solid 2px #fff' }}>
+                <TableCell align="left" sx={{ paddingLeft: '20px' }}>
                   <span style={{fontWeight: 'bold'}}>{result.points}</span> pts
                   </TableCell>
-                <TableCell align="left" sx={{ paddingLeft: '20px',
-                                              borderBottom: 'solid 2px #fff' }}>
+                <TableCell align="left" sx={{ paddingLeft: '20px' }}>
                   {formatTime(1200 - result.time)}
                 </TableCell>
               </TableRow>
