@@ -88,7 +88,7 @@
   border: 1px solid #800080;
 }
 
-.quiz-container button {
+/* .quiz-container button {
   background: linear-gradient(90.04deg, #ffc0cb 0.03%, #800080 99.96%);
   border-radius: 9px;
   font-size: 18px;
@@ -98,13 +98,13 @@
   border: none;
   cursor: pointer;
   margin-top: 15px;
-}
+} */
 
-.quiz-container button:disabled {
+/* .quiz-container button:disabled {
   background: #e7e8e9;
   color: #9fa3a9;
   cursor: not-allowed;
-}
+} */
 
 .question-image {
   width: 100px;

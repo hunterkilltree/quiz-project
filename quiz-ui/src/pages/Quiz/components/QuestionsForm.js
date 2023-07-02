@@ -6,7 +6,9 @@ import { formatTime } from '../../../components/Util';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-// import FormControl from '@mui/material/FormControl';
+import Button from '@mui/joy/Button';
+import Stack from '@mui/joy/Stack';
+import Card from '@mui/joy/Card';
 
 const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
@@ -108,7 +110,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
       </Typography>
       <form onSubmit={handleSubmit}>
         {questionsLoaded && questions.length > 0 && (
-          <>
+          <Card style={{ border: 'none', boxShadow: 'none', height: 420 }}>
             <Question
               question={questions[currentQuestionIndex]}
               onSelectedOption={(answer, answerIndex) =>
@@ -117,26 +119,34 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               answer={answers} // Pass the answer as a prop
               x={x}
             />
-          </>
+          </Card>
         )}
-
-        {currentQuestionIndex !== 0 && (
-          <button
-            type="button"
+        <Stack
+          sx={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}
+          direction="row"
+          spacing={8}>
+          <Button
+            color="primary"
+            variant="solid"
             onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}>
             Previous
-          </button>
-        )}
-        {currentQuestionIndex !== questions.length - 1 && (
-          <button
-            type="button"
+          </Button>
+          <Button
+            type="submit"
+            variant="solid"
+            color="warning"
+            disabled={currentQuestionIndex != questions.length - 1}>
+            Submit
+          </Button>
+          <Button
+            color="success"
+            variant="solid"
             onClick={handleNextQuestion}
             disabled={currentQuestionIndex === questions.length - 1}>
             Next
-          </button>
-        )}
-        {currentQuestionIndex === questions.length - 1 && <button type="submit">Submit</button>}
+          </Button>
+        </Stack>
       </form>
     </div>
   );
