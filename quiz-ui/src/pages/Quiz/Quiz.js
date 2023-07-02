@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuestionsForm from './components/QuestionsForm';
 import { postServerData } from '../../helper/helper';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+// import InputLabel from '@mui/material/InputLabel';
+// import FormControl from '@mui/joy/FormControl';
+import styles from './Quiz.module.scss';
 
 const universities = [
   'University 1',
@@ -28,8 +29,8 @@ const Quiz = () => {
     setName(event.target.value);
   };
 
-  const handleUniversityChange = (event) => {
-    setUniversity(event.target.value);
+  const handleUniversityChange = (event, newValue) => {
+    setUniversity(newValue);
   };
 
   const handleStartGame = () => {
@@ -68,52 +69,67 @@ const Quiz = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      fullWidth>
-      {!gameStarted && (
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          height="50vh">
-          <TextField
-            label="Name"
-            placeholder="Name"
-            value={name}
-            onChange={handleNameChange}
-            variant="outlined"
-            sx={{ marginBottom: '16px', width: '300px' }}
-          />
-          <FormControl sx={{ width: '300px' }}>
-            <InputLabel id="select-university-label">Select University</InputLabel>
+    <div>
+      <Box
+        className={styles.home}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center">
+        {!gameStarted && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            height="50vh">
+            <div>
+              <h1 className={styles.mainTitle}>QUIZY</h1>
+            </div>
+            <Input
+              label="Name"
+              placeholder="Name"
+              value={name}
+              onChange={handleNameChange}
+              variant="outlined"
+              required
+              size="lg"
+              sx={{
+                marginBottom: '16px',
+                width: '300px',
+                backgroundColor: '#fff'
+              }}
+            />
             <Select
-              labelId="select-university-label"
-              label="Select University"
+              sx={{
+                marginBottom: '16px',
+                width: '300px',
+                backgroundColor: '#fff'
+              }}
+              placeholder="Select University"
               value={university}
+              required
+              size="lg"
               onChange={handleUniversityChange}
               variant="outlined">
-              <MenuItem value="" disabled>
+              <Option value="" disabled>
                 <em>Select University</em>
-              </MenuItem>
+              </Option>
               {universities.map((uni) => (
-                <MenuItem key={uni} value={uni}>
+                <Option key={uni} value={uni}>
                   {uni}
-                </MenuItem>
+                </Option>
               ))}
             </Select>
-          </FormControl>
-          <Button sx={{ marginTop: '16px' }} variant="contained" onClick={handleStartGame}>
-            Start Game
-          </Button>
-        </Box>
-      )}
-      {gameStarted && <QuestionsForm onHandleSubmit={onHandleSubmit} />}
-    </Box>
+
+            <Button sx={{ marginTop: '16px' }} variant="solid" onClick={handleStartGame}>
+              Start Game
+            </Button>
+          </Box>
+        )}
+        {gameStarted && <QuestionsForm onHandleSubmit={onHandleSubmit} />}
+      </Box>
+    </div>
   );
 };
 
