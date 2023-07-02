@@ -1,13 +1,12 @@
 import React from 'react';
 import LeaderboardTable from './components/LeaderboardTable';
+import styles from './Leaderboard.module.scss';
 
 const Leaderboard = () => {
   return (
-    <div>
-      <h3 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 31, paddingTop: 15 }}>
-        LEADERBOARD
-      </h3>
-      <LeaderboardTable/>
+    <div className={styles.home}>
+      <h3 className={styles.mainTitle}>LEADERBOARD</h3>
+      <LeaderboardTable />
     </div>
   );
 };

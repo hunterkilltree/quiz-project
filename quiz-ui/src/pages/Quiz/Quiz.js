@@ -69,67 +69,65 @@ const Quiz = () => {
   };
 
   return (
-    <div>
-      <Box
-        className={styles.home}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center">
-        {!gameStarted && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            height="50vh">
-            <div>
-              <h1 className={styles.mainTitle}>QUIZY</h1>
-            </div>
-            <Input
-              label="Name"
-              placeholder="Name"
-              value={name}
-              onChange={handleNameChange}
-              variant="outlined"
-              required
-              size="lg"
-              sx={{
-                marginBottom: '16px',
-                width: '300px',
-                backgroundColor: '#fff'
-              }}
-            />
-            <Select
-              sx={{
-                marginBottom: '16px',
-                width: '300px',
-                backgroundColor: '#fff'
-              }}
-              placeholder="Select University"
-              value={university}
-              required
-              size="lg"
-              onChange={handleUniversityChange}
-              variant="outlined">
-              <Option value="" disabled>
-                <em>Select University</em>
+    <Box
+      className={styles.home}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center">
+      {!gameStarted && (
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          height="50vh">
+          <div>
+            <h1 className={styles.mainTitle}>QUIZY</h1>
+          </div>
+          <Input
+            label="Name"
+            placeholder="Name"
+            value={name}
+            onChange={handleNameChange}
+            variant="outlined"
+            required
+            size="lg"
+            sx={{
+              marginBottom: '16px',
+              width: '300px',
+              backgroundColor: '#fff'
+            }}
+          />
+          <Select
+            sx={{
+              marginBottom: '16px',
+              width: '300px',
+              backgroundColor: '#fff'
+            }}
+            placeholder="Select University"
+            value={university}
+            required
+            size="lg"
+            onChange={handleUniversityChange}
+            variant="outlined">
+            <Option value="" disabled>
+              <em>Select University</em>
+            </Option>
+            {universities.map((uni) => (
+              <Option key={uni} value={uni}>
+                {uni}
               </Option>
-              {universities.map((uni) => (
-                <Option key={uni} value={uni}>
-                  {uni}
-                </Option>
-              ))}
-            </Select>
+            ))}
+          </Select>
 
-            <Button sx={{ marginTop: '16px' }} variant="solid" onClick={handleStartGame}>
-              Start Game
-            </Button>
-          </Box>
-        )}
-        {gameStarted && <QuestionsForm onHandleSubmit={onHandleSubmit} />}
-      </Box>
-    </div>
+          <Button sx={{ marginTop: '16px' }} variant="solid" onClick={handleStartGame}>
+            Start Game
+          </Button>
+        </Box>
+      )}
+      {gameStarted && <QuestionsForm onHandleSubmit={onHandleSubmit} />}
+    </Box>
   );
 };
 
