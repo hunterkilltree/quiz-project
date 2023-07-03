@@ -125,31 +125,43 @@ const QuestionsForm = ({ onHandleSubmit }) => {
             />
           </Card>
         )}
-        <Stack
-          sx={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}
-          direction="row"
-          spacing={8}>
+        <Stack sx={{ display: 'flex', justifyContent: 'center' }} direction="row" spacing={8}>
           <Button
+            sx={{
+              width: 80
+            }}
             color="primary"
             variant="solid"
+            size="md"
             onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}>
-            Previous
+            Back
           </Button>
-          <Button
-            type="submit"
-            variant="solid"
-            color="warning"
-            disabled={currentQuestionIndex != questions.length - 1}>
-            Submit
-          </Button>
-          <Button
-            color="success"
-            variant="solid"
-            onClick={handleNextQuestion}
-            disabled={currentQuestionIndex === questions.length - 1}>
-            Next
-          </Button>
+          {currentQuestionIndex === questions.length - 1 && (
+            <Button
+              sx={{
+                width: 80
+              }}
+              type="submit"
+              variant="solid"
+              color="warning"
+              disabled={currentQuestionIndex != questions.length - 1}>
+              Submit
+            </Button>
+          )}
+          {currentQuestionIndex !== questions.length - 1 && (
+            <Button
+              sx={{
+                width: 80
+              }}
+              color="success"
+              variant="solid"
+              size="md"
+              onClick={handleNextQuestion}
+              disabled={currentQuestionIndex === questions.length - 1}>
+              Next
+            </Button>
+          )}
         </Stack>
       </form>
     </div>
