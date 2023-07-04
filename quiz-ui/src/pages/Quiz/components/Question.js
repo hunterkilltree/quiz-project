@@ -12,14 +12,14 @@ import ListItem from '@mui/joy/ListItem';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 
-export default function Question({ question, onSelectedOption, answer, x }) {
+export default function Question({ question, onSelectedOption, answer, x, rotateY }) {
   const handleChange = (event) => {
     if (onSelectedOption) {
       onSelectedOption(event.target.value, question?.options.indexOf(event.target.value));
     }
   };
 
-  console.log(answer);
+  // console.log(answer);
   return (
     <Paper elevation={0}>
       <AnimatePresence mode="wait">
@@ -27,7 +27,7 @@ export default function Question({ question, onSelectedOption, answer, x }) {
           key={question.id} // Use a unique key for each question
           initial={{ opacity: 0, x }} // Initial animation values
           animate={{ opacity: 1, x: 0 }} // Animation values when the question is in view
-          exit={{ opacity: 0, x, rotateX: 60, rotateY: -60 }} // Animation values when transitioning out of view
+          exit={{ opacity: 0, x: 0, rotateX: 60, rotateY }} // Animation values when transitioning out of view
           transition={{
             duration: 1,
             ease: [0.4, 0, 0.2, 1] // Custom easing function for smoother motion
@@ -85,5 +85,6 @@ Question.propTypes = {
   question: PropTypes.object,
   onSelectedOption: PropTypes.func,
   answer: PropTypes.object,
-  x: PropTypes.number
+  x: PropTypes.number,
+  rotateY: PropTypes.number
 };

@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { getServerData } from '../../../helper/helper';
 import Question from './Question';
 import { formatTime } from '../../../components/Util';
-import CircularProgress from '@mui/material/CircularProgress';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Card from '@mui/joy/Card';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 const QuestionsForm = ({ onHandleSubmit }) => {
   const [questions, setQuestions] = useState([]);
@@ -18,7 +17,8 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [answersIndex, setAnswersIndex] = useState({}); // Object to store user answers
   const [questionsLoaded, setQuestionsLoaded] = useState(false); // Track if questions are loaded
   const [loading, setLoading] = useState(true); // Track loading state
-  const [x, setX] = useState(-200);
+  const [x, setX] = useState(200);
+  const [rotateY, setRotateY] = useState(0);
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -62,11 +62,13 @@ const QuestionsForm = ({ onHandleSubmit }) => {
 
   const handleNextQuestion = () => {
     setX(200);
+    setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const handlePreviousQuestion = () => {
     setX(-200);
+    setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
   };
 
@@ -93,21 +95,22 @@ const QuestionsForm = ({ onHandleSubmit }) => {
 
   if (loading) {
     // Display a loading indicator while fetching data
-    return (
-      <Paper sx={{ display: 'flex', justifyContent: 'center' }} fullHeight fullWidth>
-        <CircularProgress color="secondary" />
-      </Paper>
-    );
+    return <CircularProgress color="success" size="lg" value={31} />;
   }
 
   return (
     <div className="quiz-container">
-      <Typography sx={{ color: 'warning.main' }} variant="h3" gutterBottom>
+      <Typography textColor="#FFA500" level="h5" noWrap={false} variant="plain">
         Weekly Question
       </Typography>
-      <Typography sx={{ color: 'primary.main' }} variant="h6" gutterBottom>
-        Time remaining: {formatTime(timeRemaining)}
-      </Typography>
+      <Stack direction="row" spacing={16}>
+        <Typography color="primary" level="h6" noWrap={false} variant="plain">
+          Time remaining: {formatTime(timeRemaining)}
+        </Typography>
+        <Typography color="neutral" level="h6" noWrap={false} variant="plain">
+          {currentQuestionIndex + 1} / {questions.length}
+        </Typography>
+      </Stack>
       <form onSubmit={handleSubmit}>
         {questionsLoaded && questions.length > 0 && (
           <Card style={{ border: 'none', boxShadow: 'none', height: 420 }}>
@@ -118,34 +121,47 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               }
               answer={answers} // Pass the answer as a prop
               x={x}
+              rotateY={rotateY}
             />
           </Card>
         )}
-        <Stack
-          sx={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}
-          direction="row"
-          spacing={8}>
+        <Stack sx={{ display: 'flex', justifyContent: 'center' }} direction="row" spacing={8}>
           <Button
+            sx={{
+              width: 80
+            }}
             color="primary"
             variant="solid"
+            size="md"
             onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}>
-            Previous
+            Back
           </Button>
-          <Button
-            type="submit"
-            variant="solid"
-            color="warning"
-            disabled={currentQuestionIndex != questions.length - 1}>
-            Submit
-          </Button>
-          <Button
-            color="success"
-            variant="solid"
-            onClick={handleNextQuestion}
-            disabled={currentQuestionIndex === questions.length - 1}>
-            Next
-          </Button>
+          {currentQuestionIndex === questions.length - 1 && (
+            <Button
+              sx={{
+                width: 80
+              }}
+              type="submit"
+              variant="solid"
+              color="warning"
+              disabled={currentQuestionIndex != questions.length - 1}>
+              Submit
+            </Button>
+          )}
+          {currentQuestionIndex !== questions.length - 1 && (
+            <Button
+              sx={{
+                width: 80
+              }}
+              color="success"
+              variant="solid"
+              size="md"
+              onClick={handleNextQuestion}
+              disabled={currentQuestionIndex === questions.length - 1}>
+              Next
+            </Button>
+          )}
         </Stack>
       </form>
     </div>
