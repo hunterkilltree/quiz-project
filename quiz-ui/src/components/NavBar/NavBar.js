@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ScienceIcon from '@mui/icons-material/Science';
+import FlutterDashIcon from '@mui/icons-material/FlutterDash';
 
 const NavBar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -49,7 +52,11 @@ const NavBar = () => {
                 }}
                 to="/Home"
                 className={location.pathname === '/Home' ? 'nav-active' : 'nav-non-active'}>
-                Home
+                <div>
+                  {' '}
+                  <FlutterDashIcon />
+                </div>
+                <div className="nav-text-icon">Home</div>
               </Link>
             </li>
             <li>
@@ -59,7 +66,11 @@ const NavBar = () => {
                 }}
                 to="/Quiz"
                 className={location.pathname === '/Quiz' ? 'nav-active' : 'nav-non-active'}>
-                Quiz
+                <div>
+                  {' '}
+                  <ScienceIcon />
+                </div>
+                <div className="nav-text-icon">Quiz</div>
               </Link>
             </li>
             <li>
@@ -69,7 +80,11 @@ const NavBar = () => {
                 }}
                 to="/Leaderboard"
                 className={location.pathname === '/Leaderboard' ? 'nav-active' : 'nav-non-active'}>
-                Leaderboard
+                <div>
+                  {' '}
+                  <DashboardIcon />
+                </div>
+                <div className="nav-text-icon">Leaderboard</div>
               </Link>
             </li>
           </ul>
