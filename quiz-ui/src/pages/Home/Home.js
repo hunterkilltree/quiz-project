@@ -15,12 +15,11 @@ const Home = () => {
   };
 
   return (
-    <Card sx={{ maxWidth: '100%' }}>
+    <Card sx={{ maxWidth: '100%', border: 'none', boxShadow: 'none' }}>
       <img
         src="https://alumni.csiro.au/wp-content/uploads/2021/08/National-Science-Week-2021.gif"
-        alt='green iguana'
-        style={{width: '100%'}}>
-      </img>
+        alt="green iguana"
+        style={{ width: '100%' }}></img>
       <CardContent>
         <Typography
           sx={{ fontWeight: 700, color: 'warning.main' }}
@@ -36,7 +35,11 @@ const Home = () => {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="contained" color='warning' endIcon={<ArrowForwardIcon />} onClick={handleGoGame}>
+        <Button
+          variant="contained"
+          color="warning"
+          endIcon={<ArrowForwardIcon />}
+          onClick={handleGoGame}>
           Quiz Time
         </Button>
       </CardActions>
