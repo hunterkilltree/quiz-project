@@ -53,78 +53,76 @@ const CongratCard = ({ name, school, time, score, rank }) => {
   }
 
   return (
-    <TableBody>
-      <TableRow>
-        <Card
-          data-resizable
-          sx={{
-            textAlign: 'center',
-            alignItems: 'center',
-            width: 450,
-            height: 370,
-            // to make the demo resizable
-            overflow: 'auto',
-            resize: 'horizontal',
-            '--icon-size': '100px',
-          }}
-        >
-          <CardOverflow variant="solid" color="warning">
-            <AspectRatio
-              variant="outlined"
-              color="warning"
-              ratio="1"
-              sx={{
-                m: 'auto',
-                transform: 'translateY(50%)',
-                borderRadius: '50%',
-                width: 'var(--icon-size)',
-                boxShadow: 'sm',
-                bgcolor: 'background.surface',
-                position: 'relative',
-              }}
-            >
-              <div>
-                <AutoAwesome sx={{ fontSize: '4rem' }} />
-              </div>
-            </AspectRatio>
-          </CardOverflow>
-          <Typography level="h2" fontSize="xl" sx={{ mt: 'calc(var(--icon-size) / 2)' }}>
-            🎊 <span style={{ fontWeight: 'bold', fontSize: 27 }}>{name}</span> 🎊<br/>
-            &nbsp;from <span style={{ fontWeight: 'bold', fontSize: 27 }}>{school}</span>
-          </Typography>
-          <Typography sx={{ maxWidth: '40ch' }}>
-            You finish the quiz in {formatTime(1200 - time)} ! <br/>
-            Your final score is: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{score}</span> <br/>
-          </Typography>
-          <CardContent sx={{ maxWidth: '40ch' }}>
-            Current rank: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{rank}</span>
-          </CardContent>
-          <CardActions
-            orientation="vertical"
-            buttonFlex={1}
+    <>
+      <Card
+        // data-resizable
+        sx={{
+          textAlign: 'center',
+          alignItems: 'center',
+          width: 300,
+          height: 370,
+          // to make the demo resizable
+          // overflow: 'auto',
+          // resize: 'horizontal',
+          '--icon-size': '100px'
+        }}>
+        <CardOverflow variant="solid" color="warning">
+          <AspectRatio
+            variant="outlined"
+            color="warning"
+            ratio="1"
             sx={{
-              '--Button-radius': '40px',
-              width: 'clamp(min(100%, 160px), 50%, min(100%, 200px))',
-            }}
-          >
-          </CardActions>
-        </Card>
-      </TableRow>
-      <TableRow>
-        <TableCell colSpan={5} align="center">
-          <Stack sx={{ display: 'flex', justifyContent: 'center' }} direction="row" spacing={2}>
-            <Button variant="contained" color="warning" onClick={handleRetry}>
-              Retry
-            </Button>
-            <Button variant="contained" color="warning" onClick={handleGoToLeaderboard}>
-              Go to Leaderboard
-            </Button>
-          </Stack>
-        </TableCell>
-      </TableRow>
-    </TableBody>
+              m: 'auto',
+              transform: 'translateY(50%)',
+              borderRadius: '50%',
+              width: 'var(--icon-size)',
+              boxShadow: 'sm',
+              bgcolor: 'background.surface',
+              position: 'relative'
+            }}>
+            <div>
+              <AutoAwesome sx={{ fontSize: '4rem' }} />
+            </div>
+          </AspectRatio>
+        </CardOverflow>
+        <Typography level="h2" fontSize="xl" sx={{ mt: 'calc(var(--icon-size) / 2)' }}>
+          🎊 <span style={{ fontWeight: 'bold', fontSize: 27 }}>{name}</span> 🎊
+          <br />
+          &nbsp;from <span style={{ fontWeight: 'bold', fontSize: 27 }}>{school}</span>
+        </Typography>
+        <Typography sx={{ maxWidth: '40ch' }}>
+          You finish the quiz in {formatTime(1200 - time)} ! <br />
+          Your final score is: <span style={{ fontWeight: 'bold', fontSize: 25 }}>
+            {score}
+          </span>{' '}
+          <br />
+        </Typography>
+        <CardContent sx={{ maxWidth: '40ch' }}>
+          Current rank: <span style={{ fontWeight: 'bold', fontSize: 25 }}>{rank}</span>
+        </CardContent>
+        <CardActions
+          orientation="vertical"
+          buttonFlex={1}
+          sx={{
+            '--Button-radius': '40px',
+            width: 'clamp(min(100%, 160px), 50%, min(100%, 200px))'
+          }}></CardActions>
+      </Card>
+
+      <Stack
+        sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
+        direction="row"
+        spacing={2}>
+        <Button variant="contained" color="warning" onClick={handleRetry}>
+          Retry
+        </Button>
+        <Button variant="contained" color="warning" onClick={handleGoToLeaderboard}>
+          Go to Leaderboard
+        </Button>
+      </Stack>
+    </>
   );
-}
+};
 
 CongratCard.propTypes = {
   name: PropTypes.string.isRequired,
