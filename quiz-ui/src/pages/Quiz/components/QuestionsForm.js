@@ -19,6 +19,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
   const [loading, setLoading] = useState(true); // Track loading state
   const [x, setX] = useState(200);
   const [rotateY, setRotateY] = useState(0);
+  const [isPageChanged, setIsPageChanged] = useState(false);
 
   useEffect(() => {
     // Fetch questions from an API or any data source
@@ -60,16 +61,22 @@ const QuestionsForm = ({ onHandleSubmit }) => {
     }
   }, [questionsLoaded]);
 
-  const handleNextQuestion = () => {
+  async function handleNextQuestion() {
     setX(200);
     setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    setIsPageChanged(true);
+    await new Promise(resolve => setTimeout(resolve, 1400));
+    setIsPageChanged(false);
   };
 
-  const handlePreviousQuestion = () => {
+  async function handlePreviousQuestion() {
     setX(-200);
     setRotateY(0);
     setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
+    setIsPageChanged(true);
+    await new Promise(resolve => setTimeout(resolve, 1400));
+    setIsPageChanged(false);
   };
 
   const handleAnswerChange = (questionId, answer, answerIndex) => {
@@ -134,7 +141,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
             variant="solid"
             size="md"
             onClick={handlePreviousQuestion}
-            disabled={currentQuestionIndex === 0}>
+            disabled={currentQuestionIndex === 0 || isPageChanged}>
             Back
           </Button>
           {currentQuestionIndex === questions.length - 1 && (
@@ -145,7 +152,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               type="submit"
               variant="solid"
               color="warning"
-              disabled={currentQuestionIndex != questions.length - 1}>
+              disabled={currentQuestionIndex != questions.length - 1 || isPageChanged}>
               Submit
             </Button>
           )}
@@ -158,7 +165,7 @@ const QuestionsForm = ({ onHandleSubmit }) => {
               variant="solid"
               size="md"
               onClick={handleNextQuestion}
-              disabled={currentQuestionIndex === questions.length - 1}>
+              disabled={currentQuestionIndex === questions.length - 1 || isPageChanged}>
               Next
             </Button>
           )}
