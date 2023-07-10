@@ -9,6 +9,7 @@ import Option from '@mui/joy/Option';
 import Box from '@mui/material/Box';
 // import InputLabel from '@mui/material/InputLabel';
 // import FormControl from '@mui/joy/FormControl';
+import inspiredNt_logo_trans from '../../components/Logo/inspiredNt_logo_trans.png';
 import styles from './Quiz.module.scss';
 
 const universities = [
@@ -82,8 +83,10 @@ const Quiz = () => {
           alignItems="center"
           justifyContent="center"
           height="50vh">
+          <img src={inspiredNt_logo_trans} alt="Logo" className={styles.quizImage} />
+
           <div>
-            <h1 className={styles.mainTitle}>QUIZY</h1>
+            <h1 className={styles.mainTitle}>Sience Quiz</h1>
           </div>
           <Input
             label="Name"

@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './App'; // where we are going to specify our routes
+import 'typeface-acme';
 
 // ReactDOM.render(
 //   <Router>
