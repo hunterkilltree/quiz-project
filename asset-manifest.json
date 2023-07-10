@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.css": "/quiz-project/static/css/main.52c9ab94.css",
-    "main.js": "/quiz-project/static/js/main.b29712f2.js",
+    "main.css": "/quiz-project/static/css/main.d5ced350.css",
+    "main.js": "/quiz-project/static/js/main.75222f6d.js",
     "static/media/inspiredNt_logo.png": "/quiz-project/static/media/inspiredNt_logo.d700e68b4defc3799cac.png",
+    "static/media/inspiredNt_logo_trans.png": "/quiz-project/static/media/inspiredNt_logo_trans.d700e68b4defc3799cac.png",
     "static/media/bronze.png": "/quiz-project/static/media/bronze.a6118719e0113ec6d7da.png",
     "static/media/silver.png": "/quiz-project/static/media/silver.9053554246601536d55a.png",
     "static/media/gold.png": "/quiz-project/static/media/gold.3955d47eb1819c82dc98.png",
     "static/media/white.png": "/quiz-project/static/media/white.2fe8d065c98aba96581a.png",
+    "static/media/acme-latin-400.woff": "/quiz-project/static/media/acme-latin-400.2013a1bb47d3c905e5b6.woff",
+    "static/media/acme-latin-400.woff2": "/quiz-project/static/media/acme-latin-400.b58b117eac3db1d8bce1.woff2",
     "index.html": "/quiz-project/index.html",
-    "main.52c9ab94.css.map": "/quiz-project/static/css/main.52c9ab94.css.map",
-    "main.b29712f2.js.map": "/quiz-project/static/js/main.b29712f2.js.map"
+    "main.d5ced350.css.map": "/quiz-project/static/css/main.d5ced350.css.map",
+    "main.75222f6d.js.map": "/quiz-project/static/js/main.75222f6d.js.map"
   },
   "entrypoints": [
-    "static/css/main.52c9ab94.css",
-    "static/js/main.b29712f2.js"
+    "static/css/main.d5ced350.css",
+    "static/js/main.75222f6d.js"
   ]
 }
