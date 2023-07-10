@@ -83,7 +83,7 @@ const LeaderboardTable = () => {
   return (
     <TableContainer>
       <Table
-        sx={{ margin: 'auto', width: '85%', minWidth: 650, border: 'solid 3px #fff' }}
+        sx={{ margin: 'auto', width: '85%', minWidth: 650, border: 'solid 3px #fff', height: '100%' }}
         size="medium"
         aria-label="leaderboard table">
         <TableHead>
@@ -161,7 +161,8 @@ const LeaderboardTable = () => {
                   borderBottom: 'solid 2px #fff'
                 }}>
                 <TableCell
-                  align="left"
+                  align='left'
+                  height='30px'
                   sx={{
                     fontWeight: 'bold',
                     fontSize: '15px !important',
