@@ -86,7 +86,7 @@ const Quiz = () => {
           <img src={inspiredNt_logo_trans} alt="Logo" className={styles.quizImage} />
 
           <div>
-            <h1 className={styles.mainTitle}>Sience Quiz</h1>
+            <h1 className={styles.mainTitle}>Science Quiz</h1>
           </div>
           <Input
             label="Name"
