@@ -16,7 +16,7 @@ const Result = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center">
-      <h1 className={styles.mainTitle}>Overall Results</h1>
+      <h1 className={styles.mainTitle}>Overall Result</h1>
       <CongratCard
         name={result?.data?.username}
         school={result?.data?.university}
