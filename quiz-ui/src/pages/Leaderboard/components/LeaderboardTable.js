@@ -93,13 +93,13 @@ const LeaderboardTable = () => {
         size="medium"
         aria-label="leaderboard table">
         <TableHead>
-          <TableRow sx={{ borderBottom: 'solid 2px #fff', bgcolor: '#BFC3CA' }}>
+          <TableRow sx={{ borderBottom: 'solid 2px #fff', bgcolor: '#9A18B9' }}>
             <TableCell
               align="left"
               sx={{
                 fontWeight: 'bold',
                 width: '10%',
-                color: '#306FEE',
+                color: '#fff',
                 fontSize: '17px !important',
                 paddingLeft: '25px'
               }}>
@@ -110,7 +110,7 @@ const LeaderboardTable = () => {
               sx={{
                 fontWeight: 'bold',
                 width: '10%',
-                color: '#306FEE',
+                color: '#fff',
                 fontSize: '17px !important'
               }}>
               Name
@@ -120,7 +120,7 @@ const LeaderboardTable = () => {
               sx={{
                 fontWeight: 'bold',
                 width: '10%',
-                color: '#306FEE',
+                color: '#fff',
                 fontSize: '17px !important'
               }}>
               University
@@ -130,7 +130,7 @@ const LeaderboardTable = () => {
               sx={{
                 fontWeight: 'bold',
                 width: '10%',
-                color: '#306FEE',
+                color: '#fff',
                 fontSize: '17px !important'
               }}>
               Score
@@ -140,7 +140,7 @@ const LeaderboardTable = () => {
               sx={{
                 fontWeight: 'bold',
                 width: '10%',
-                color: '#306FEE',
+                color: '#fff',
                 fontSize: '17px !important'
               }}>
               Time
