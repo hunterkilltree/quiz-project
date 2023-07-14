@@ -66,7 +66,7 @@ const CongratCard = ({ name, school, time, score, rank }) => {
           // resize: 'horizontal',
           '--icon-size': '100px'
         }}>
-        <CardOverflow variant="solid" color="warning">
+        <CardOverflow variant="solid" color="info">
           <AspectRatio
             variant="outlined"
             color="warning"
