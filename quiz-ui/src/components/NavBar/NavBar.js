@@ -20,15 +20,15 @@ const NavBar = () => {
   return (
     <>
       <div>
-        <div style={{display: 'flex'}}>
+        <div style={{ display: 'flex' }}>
           <img
             src="https://images.squarespace-cdn.com/content/v1/5e7edd655234e75594647807/1586498728796-Q9USRXPO6FFZOCYXAD57/Screen+Shot+2020-04-10+at+3.35.11+pm.png?format=1500w"
             alt="Logo"
             onClick={handleImageClick}
-            style={{margin: 'auto', width: '10%'}}
+            style={{ margin: 'auto', width: '10%' }}
           />
         </div>
-        <div style={{display: 'flex'}}>
+        <div style={{ display: 'flex' }}>
           <nav className="navigation">
             <button
               className="hamburger"
@@ -83,7 +83,9 @@ const NavBar = () => {
                       setIsNavExpanded(false);
                     }}
                     to="/Leaderboard"
-                    className={location.pathname === '/Leaderboard' ? 'nav-active' : 'nav-non-active'}>
+                    className={
+                      location.pathname === '/Leaderboard' ? 'nav-active' : 'nav-non-active'
+                    }>
                     <div>
                       {' '}
                       <DashboardIcon />
@@ -91,7 +93,7 @@ const NavBar = () => {
                     <div className="nav-text-icon hover-underline-animation">Leaderboard</div>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     onClick={() => {
                       setIsNavExpanded(false);
@@ -118,7 +120,7 @@ const NavBar = () => {
                     </div>
                     <div className="nav-text-icon hover-underline-animation">Contact Us</div>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </nav>
