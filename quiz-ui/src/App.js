@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { Quiz } from './pages/Quiz';
 import { Result } from './pages/Result';
 import { NavBar } from './components/NavBar';
+import Footer from './components/Footer';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Leaderboard } from './pages/Leaderboard';
 
@@ -26,6 +27,7 @@ export const App = () => {
         <Route path="/Leaderboard" element={<Leaderboard />} />
         <Route path="/Result" element={<Result />} />
       </Routes>
+      <Footer />
     </div>
   );
 };
