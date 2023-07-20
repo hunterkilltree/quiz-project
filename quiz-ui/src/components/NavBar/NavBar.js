@@ -20,7 +20,7 @@ const NavBar = () => {
   return (
     <>
       <div>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', margin: '8px' }}>
           <img
             src="https://images.squarespace-cdn.com/content/v1/5e7edd655234e75594647807/1586498728796-Q9USRXPO6FFZOCYXAD57/Screen+Shot+2020-04-10+at+3.35.11+pm.png?format=1500w"
             alt="Logo"
@@ -48,7 +48,7 @@ const NavBar = () => {
               </svg>
             </button>
             <div className={isNavExpanded ? 'navigation-menu expanded' : 'navigation-menu'}>
-              <ul>
+              <ul style={{marginTop: '3px'}}>
                 <li>
                   <Link
                     onClick={() => {
