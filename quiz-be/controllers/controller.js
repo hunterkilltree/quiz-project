@@ -8,13 +8,30 @@ export async function getQuestions(req, res) {
     const q = await Questions.find();
     if (q && q.length > 0) {
       const arrayQuestions = q[0]?.questions;
-      res.json(arrayQuestions);
+
+      // Custom shuffle function
+      const shuffledQuestions = shuffleArray(arrayQuestions);
+
+      // Return the first 20 elements of the shuffled array
+      const limitedQuestions = shuffledQuestions.slice(0, 20);
+
+      res.json(limitedQuestions);
     } else {
       res.json("No questions");
     }
   } catch (error) {
     res.json({ error });
   }
+}
+
+// Custom shuffle function (Fisher-Yates algorithm)
+function shuffleArray(array) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
 }
 
 export async function insertQuestions(req, res) {
