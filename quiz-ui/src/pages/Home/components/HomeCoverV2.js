@@ -11,7 +11,7 @@ import {
   BannerShopButton,
   BannerTitle
 } from './banner';
-import Banner from '../../../components/Logo/banner.png';
+import Banner from '../../../components/Logo/home_banner.png';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function HomeCoverV2() {
