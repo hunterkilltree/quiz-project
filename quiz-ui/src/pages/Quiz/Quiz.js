@@ -90,7 +90,7 @@ const Quiz = () => {
           </div>
           <Input
             label="Name"
-            placeholder="Name"
+            placeholder="Full Name"
             value={name}
             onChange={handleNameChange}
             variant="outlined"
