@@ -21,6 +21,7 @@ export const App = () => {
     <div>
       <NavBar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Quiz" element={<Quiz />} />
         <Route path="/Leaderboard" element={<Leaderboard />} />
