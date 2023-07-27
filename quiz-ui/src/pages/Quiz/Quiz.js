@@ -188,7 +188,7 @@ const Quiz = () => {
             </Typography>
             <Typography className={styles.colorContent} level="h6">
               {' '}
-              {`\u2022 The less time you finish, the more bonus point you get (must have at least 1 correct answer)`}
+              {`\u2022 The sooner you complete , the more bonus point you get (must have at least 1 correct answer)`}
             </Typography>
           </Box>
           <Input
