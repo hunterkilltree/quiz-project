@@ -43,7 +43,7 @@ export default function Footer() {
               color="text.secondary"
               marginBottom="1rem"
               fontSize="calc(0.9 * 1rem)">
-              Sarah Sutcliffe
+              Contact: Sarah Sutcliffe
             </Typography>
             <Typography
               variant="body2"
@@ -64,7 +64,10 @@ export default function Footer() {
               color="text.secondary"
               marginBottom="1rem"
               fontSize="calc(0.9 * 1rem)">
-              Email: inspirednt@cdu.edu.au
+              {`Email: `}
+              <Link href={`mailto:inspirednt@cdu.edu.au`} underline="always">
+                {`inspirednt@cdu.edu.au`}
+              </Link>
             </Typography>
           </Grid>
           <Grid item xs={12} sm={5}>
