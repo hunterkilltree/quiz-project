@@ -28,7 +28,18 @@ export default function Footer() {
         p: 6
       }}>
       <Container maxWidth="lg">
-        <Grid container spacing={5}>
+        <Grid container spacing={1}>
+          <Typography
+            variant="body2"
+            color="#a3826c"
+            gutterBottom
+            marginBottom="1.5rem"
+            align="center">
+            Inspired NT respectfully acknowledge the Traditional Custodians of the lands on which we
+            work, play, experiment, and learn. We value their legacy as the first scientists and
+            their continued connection to this country. We pay our respects to elders past, present,
+            and emerging. We extend this respect to all Aboriginal and Torres Strait people.
+          </Typography>
           <Grid item xs={12} sm={7}>
             <Typography
               variant="h6"
