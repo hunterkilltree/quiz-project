@@ -6,6 +6,8 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
 import Paper from '@mui/material/Paper';
 import ListItem from '@mui/joy/ListItem';
@@ -57,22 +59,26 @@ export default function Question({ question, onSelectedOption, answer, x, rotate
                       variant="outlined"
                       key={i}
                       sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}>
-                      <Radio
-                        overlay
-                        value={q}
-                        label={q}
-                        slotProps={{
-                          action: ({ checked }) => ({
-                            sx: (theme) => ({
-                              ...(checked && {
-                                inset: -1,
-                                border: '2px solid',
-                                borderColor: theme.vars.palette.primary[500]
+                        <FormControl overlay sx={{ p: 0, flexDirection: 'row', gap: 2 }}>
+                          <Radio
+                            overlay
+                            value={q}
+                            slotProps={{
+                              action: ({ checked }) => ({
+                                sx: (theme) => ({
+                                  ...(checked && {
+                                    inset: -1,
+                                    border: '2px solid',
+                                    borderColor: theme.vars.palette.primary[500]
+                                  })
+                                })
                               })
-                            })
-                          })
-                        }}
-                      />
+                            }}
+                          />
+                          <div>
+                            <FormLabel sx={{textAlign: 'left'}}>{q}</FormLabel>
+                          </div>
+                        </FormControl>
                     </ListItem>
                   ))}
                 </List>
