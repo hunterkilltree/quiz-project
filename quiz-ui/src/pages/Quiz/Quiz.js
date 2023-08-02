@@ -141,7 +141,7 @@ const Quiz = () => {
   const onHandleSubmit = (timeRemaining, answers, questions) => {
     const data = {
       username: name,
-      university: university || 'none',
+      university: university || 'N/A',
       time: timeRemaining,
       answers: answers
     };
