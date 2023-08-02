@@ -72,7 +72,7 @@ const MoreInfo = () => {
         color="#a3826c"
         sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', mb: 3, mt: 3 }}>
         {' '}
-        The Inspired NT Quiz is proudly c by:
+        The Inspired NT Quiz is proudly sponsored by
       </Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', mb: 3, mt: 3 }}>
         <img width="60%" style={{ margin: 'auto' }} src={Sponsor}></img>
