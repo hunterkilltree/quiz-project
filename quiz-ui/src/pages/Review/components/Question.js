@@ -47,7 +47,7 @@ export default function Question({ question, onSelectedOption, answer, x, rotate
                 <img
                   // src={`${process.env.PUBLIC_URL}/images/quiz/${question.imgUrl}`}
                   // src={`https://imagedelivery.net/GuOwov7MQf3_QpmVBqSw5A/${question.imgUrl}/public`}
-                  src={`https://img.inspiredntquiz.net${question.imgUrl}`}
+                  src={`https://img.inspiredntquiz.net/${question.imgUrl}`}
                   loading="lazy"
                   alt={`${question.imgUrl}`}
                 />
